@@ -8,3 +8,8 @@ body {
 	background: $color-gray-lightest;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

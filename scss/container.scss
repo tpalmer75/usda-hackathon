@@ -4,6 +4,25 @@
 	background: #fff;
 	//padding: 20px;
 	box-shadow: 0 2px 5px rgba(0,0,0,.3);
+	position: relative;
+
+	// NG ANIMATIONS
+	.wrapper {
+		position: relative;
+		&.ng-enter {
+			animation: slide-in .5s;
+		}
+	}
+
+	@keyframes slide-in {
+		0% {
+			left: 30px;
+			opacity: 0;
+		} 100% {
+			left: 0;
+			opacity: 1;
+		}
+	}
 
 	h1, h2, h3, h4, h5, h6 {
 		margin-top: 0;
@@ -63,6 +82,27 @@
 			font-size: 24px;
 			&.fa-user {
 				color: $color-gray-light;
+			}
+		}
+	}
+
+	.footer-controls {
+		background: $color-gray-lightest;
+		padding: 10px 20px;
+		.primary-action {
+			float: right;
+		}
+		.back-button {
+			color: $color-gray;
+			display: inline-block;
+			margin-top: 15px;
+			.fa {
+				font-size: 32px;
+				vertical-align: top;
+				position: relative;
+				top: -5px;
+				display: inline-block;
+				margin-right: 10px;
 			}
 		}
 	}

@@ -8,11 +8,13 @@
 		max-width: 1064px;
 		margin: auto;
 	}
+	a:focus {
+		box-shadow: none;
+	}
 }
 
 #logo {
-	width: 240px;
-}
+	width: 240px;}
 
 #main-footer {
 	text-align: center;

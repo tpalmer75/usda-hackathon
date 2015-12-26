@@ -2210,6 +2210,8 @@ fieldset {
     text-align: left;
     max-width: 1064px;
     margin: auto; }
+  #main-header a:focus {
+    box-shadow: none; }
 
 #logo {
   width: 240px; }
@@ -2223,7 +2225,19 @@ fieldset {
   max-width: 800px;
   margin: -40px auto 0 auto;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative; }
+  #main-container .wrapper {
+    position: relative; }
+    #main-container .wrapper.ng-enter {
+      animation: slide-in .5s; }
+@keyframes slide-in {
+  0% {
+    left: 30px;
+    opacity: 0; }
+  100% {
+    left: 0;
+    opacity: 1; } }
   #main-container h1, #main-container h2, #main-container h3, #main-container h4, #main-container h5, #main-container h6 {
     margin-top: 0; }
   #main-container .hr {
@@ -2263,7 +2277,28 @@ fieldset {
     font-size: 24px; }
     #main-container .user-table .fa.fa-user {
       color: #aeb0b5; }
+  #main-container .footer-controls {
+    background: #f1f1f1;
+    padding: 10px 20px; }
+    #main-container .footer-controls .primary-action {
+      float: right; }
+    #main-container .footer-controls .back-button {
+      color: #5b616b;
+      display: inline-block;
+      margin-top: 15px; }
+      #main-container .footer-controls .back-button .fa {
+        font-size: 32px;
+        vertical-align: top;
+        position: relative;
+        top: -5px;
+        display: inline-block;
+        margin-right: 10px; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {
   background: #f1f1f1; }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }

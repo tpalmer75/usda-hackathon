@@ -1,6 +1,6 @@
 // create the module and name it scotchApp
 // also include ngRoute for all our routing needs
-var lunchApp = angular.module('lunchApp', ['ngRoute']);
+var lunchApp = angular.module('lunchApp', ['ngRoute', 'ngAnimate']);
 
 // configure our routes
 lunchApp.config(function($routeProvider) {
