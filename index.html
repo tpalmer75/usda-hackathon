@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="lunchApp">
+	<head>
+		<!-- USA WEB COMPONENTS -->
+		<link href="usa-web/css/google-fonts.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<script src="usa-web/js/components.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		<!-- JQUERY & ANGULAR -->
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-route.min.js"></script>
+		
+		<!-- APP SCRIPT -->
+		<script src="js/app.js"></script>	
+	</head>
+	<body>
+		<header id="main-header">
+			<div class="wrapper">
+				<a href="#/"><img id="logo" src="img/usda-logo-@2x.png"/></a>
+			</div>
+		</header>
+		<section id="main-container" ng-view>
+			<!-- CONTENT AND INJECTED VIEWS -->
+		</section>
+		<footer id="main-footer">
+			<p>A prototype for the United States Department of Agriculture</p>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+@import "../usa-web/_scss/all.scss";
+@import "layout.scss";
+@import "container.scss";
+
+/* ------ BEGIN CUSTOM CODE ------ */
+
+body {
+	background: $color-gray-lightest;
+}
+

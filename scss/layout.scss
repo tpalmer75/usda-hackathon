@@ -1,0 +1,21 @@
+#main-header {
+	background: $color-primary-darkest;
+	height: 125px;
+	padding: 20px;
+	text-align: center;
+	.wrapper {
+		text-align: left;
+		max-width: 1064px;
+		margin: auto;
+	}
+}
+
+#logo {
+	width: 240px;
+}
+
+#main-footer {
+	text-align: center;
+	font-size: 15px;
+	color: $color-gray-light;
+}
