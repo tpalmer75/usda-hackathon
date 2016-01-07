@@ -1,0 +1,1 @@
+angular.module("lunch.controllers",[]).controller("MainCtrl",function(l,a,n){var r=a.all();l.addNew=function(){var l={test:!0,value:1};r.$add(l)}});

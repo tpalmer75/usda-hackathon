@@ -1,0 +1,1 @@
+angular.module("lunch.services",[]).factory("Submissions",function(n,s){var u=new Firebase("https://lunchux.firebaseIO.com/submissions"),e=n(u);return{all:function(){return e}}});
