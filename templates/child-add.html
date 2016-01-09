@@ -1,0 +1,34 @@
+<form name="userForm" ng-submit="goNext(userForm.$valid);" novalidate>
+	<div class="content">
+		<h3>First, let’s list each child you’re applying for.</h3>
+		<div class="hr"></div>
+		<p>This is anyone who is living with you and shares income and expenses, even if they’re not related.</p>
+	
+		<table class="user-table">
+			<tr>
+				<td></td>
+				<td>First name</td>
+				<td>MI</td>
+				<td>Last name</td>
+			</tr>
+			<tr ng-repeat="child in newSubmission.children">
+				<td class="table-icon"><i class="fa fa-user"></i></td>
+				<td><input type="text" name="firstName" ng-model="child.firstName" ng-minlength="1" ng-maxlength="2" required></td>
+				<td class="middle-initial"><input type="text" name="middleInitial" ng-model="child.middleInitial"></td>
+				<td><input type="text" name="lastName" ng-model="child.lastName" required></td>
+				</td>
+				<p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" class="help-block">You name is required.</p>
+			</tr>
+			<tr class="add-user" ng-click="addChild();">
+				<td class="table-icon"><i class="fa fa-plus-circle"></i></td>
+				<td>Add another child</td>
+			</tr>
+		</table>	
+	
+	</div>
+	<footer class="footer-controls clearfix">
+		<button type="Submit" class="usa-button primary-action" ng-disabled="userForm.$invalid">Next</button>
+		<div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+	</footer>
+</form>
+

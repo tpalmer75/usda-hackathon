@@ -2246,13 +2246,16 @@ fieldset {
     background: #0071bc;
     margin: 1.75em 0; }
   #main-container .content {
-    padding: 30px; }
+    padding: 30px 30px 40px; }
+    @media screen and (max-width: 500px) {
+      #main-container .content {
+        padding: 20px 10px 20px; } }
   #main-container .landing .usa-grid {
     padding: 0; }
     #main-container .landing .usa-grid .image-container {
       background: red;
       height: 0;
-      padding-bottom: 45.5%;
+      padding-bottom: 46.5%;
       background-image: url("../img/landing-image-@2x.jpg");
       background-size: cover;
       background-position: center center; }
@@ -2268,24 +2271,40 @@ fieldset {
   #main-container .usa-accordion-content {
     height: 125px;
     overflow-y: scroll; }
-  #main-container .user-table td {
-    padding: 0 5px;
-    border: 0; }
-    #main-container .user-table td.middle-initial {
-      width: 60px; }
-  #main-container .user-table .fa {
-    font-size: 24px; }
-    #main-container .user-table .fa.fa-user {
-      color: #aeb0b5; }
+  #main-container .user-table {
+    margin-bottom: 0; }
+    #main-container .user-table td {
+      padding: 0 5px;
+      border: 0; }
+      #main-container .user-table td.middle-initial {
+        width: 60px; }
+    #main-container .user-table .table-icon {
+      font-size: 24px;
+      color: #aeb0b5;
+      width: 25px;
+      padding-left: 0; }
+    #main-container .user-table .add-user {
+      color: #2e8540;
+      cursor: pointer; }
+      #main-container .user-table .add-user .table-icon {
+        color: #2e8540; }
+      #main-container .user-table .add-user td {
+        padding-top: 10px; }
+    #main-container .user-table tr.ng-enter {
+      opacity: 0;
+      transition: opacity 0.2s; }
+    #main-container .user-table tr.ng-enter-active {
+      opacity: 1; }
   #main-container .footer-controls {
     background: #f1f1f1;
     padding: 10px 20px; }
-    #main-container .footer-controls .primary-action {
+    #main-container .footer-controls button {
       float: right; }
     #main-container .footer-controls .back-button {
       color: #5b616b;
       display: inline-block;
-      margin-top: 15px; }
+      margin-top: 15px;
+      cursor: pointer; }
       #main-container .footer-controls .back-button .fa {
         font-size: 32px;
         vertical-align: top;
@@ -2293,6 +2312,9 @@ fieldset {
         top: -5px;
         display: inline-block;
         margin-right: 10px; }
+
+body form {
+  max-width: none; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {
