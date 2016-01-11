@@ -1,7 +1,11 @@
-<div class="content">
-	<h3>First, let’s start with Alex.</h3>
-</div>
-<footer class="footer-controls clearfix">
-	<a href="#add-children" class="usa-button primary-action">Next</a>
-	<div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
-</footer>
+<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+	<div class="content">
+		<h3>First, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+		<div class="hr"></div>
+		<p>Is Alex a student?</p>
+	</div>
+	<footer class="footer-controls clearfix">
+		<button type="Submit" class="usa-button primary-action">Next</button>
+		<div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+	</footer>
+</form>

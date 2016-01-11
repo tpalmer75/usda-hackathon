@@ -1,3 +1,88 @@
 body form {
 	max-width: none;
 }
+
+form button[type="submit"], form input[type="submit"] {
+	margin: 0;
+}
+
+.user-table {
+	margin-bottom: 0;
+	td {
+		padding: 2px 5px;
+		border: 0;
+		&.middle-initial {
+			width: 60px;
+		}
+	}
+	.table-icon {
+		font-size: 24px;
+		color: $color-gray-light;
+		width: 25px;
+		padding-left: 5px;
+	}
+	.add-user {
+		color: $color-green;
+		cursor: pointer;
+		.table-icon {
+			color: $color-green;
+		}
+		td {
+			padding-top: 10px;
+		}
+	}
+	tr {
+		border-left: 3px solid transparent;
+		transition: all .2s;
+		&.ng-enter {
+			opacity: 0;
+			transition: opacity .2s
+		}
+		&.ng-enter-active {
+			opacity: 1;
+		}
+		&.ng-leave {
+			opacity: 1;
+			transition: opacity .2s;
+		}
+		&.ng-leave-active {
+			opacity: 0;
+		}
+		&:nth-of-type(2) {
+			.delete {
+				visibility: hidden;
+			}
+		}
+		&.usa-input-error {
+			border-left: 3px solid #cd2026;
+		}
+	}
+	.delete {
+		color: $color-secondary;
+		font-size: 24px;
+		width: 28px;
+		cursor: pointer;
+	}
+	input {
+		margin: 2px;
+		transition: all .1s;
+	}
+	input.input-error {
+		border: 3px solid $color-secondary;
+		margin: 0;
+	}
+}
+
+.usa-input-error.stand-alone {
+	right: 0;
+	transition: all .5s;
+	&.ng-show {
+		opacity: 1;
+		height: 111px;
+
+	}
+	&.ng-hide {
+		opacity: 0;
+		height: 0;
+	}
+}

@@ -1,25 +1,28 @@
 /*global angular:true */ // Codekit fix 
 
-// create the module and name it scotchApp
-// also include ngRoute for all our routing needs
 //var lunchApp = angular.module('lunchApp', ['ngRoute', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase']);
-var lunchApp = angular.module('lunchApp', ['ngRoute', 'ngAnimate', 'lunch.controllers']);
+var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.controllers']);
 
 // configure our routes
-lunchApp.config(function($routeProvider) {
-    $routeProvider
+lunchApp.config(function($stateProvider, $urlRouterProvider) {
 
-        // route for the home page
-        .when('/', {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('home', {
+            url: '/',
             templateUrl : 'templates/landing.html',
         })
-        .when('/child-add', {
+        .state('child-add', {
+            url: '/children',
             templateUrl : 'templates/child-add.html'
         })
-        .when('/child-individual', {
+        .state('child-individual', {
+            url: '/children',
             templateUrl : 'templates/child-individual.html'
         })
-        .when('/legal', {
+        .state('legal', {
+            url: '/legal',
             templateUrl : 'templates/legal.html'
         });
 
