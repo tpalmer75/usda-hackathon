@@ -18,7 +18,7 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl : 'templates/child-add.html'
         })
         .state('child-individual', {
-            url: '/children',
+            url: '/children/:idx',
             templateUrl : 'templates/child-individual.html'
         })
         .state('legal', {

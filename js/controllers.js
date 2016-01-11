@@ -2,7 +2,7 @@
 
 angular.module('lunch.controllers', [])
 
-.controller('MainCtrl', function($rootScope, $scope, $state) {
+.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams) {
 	
 	//var data = Submissions.all();
 
@@ -14,7 +14,9 @@ angular.module('lunch.controllers', [])
 	// for form validation on /child-add
 	$scope.formSubmitted = false;
 	// for showing info for individuals
-	var currentPerson = 0;
+	$scope.currentPerson = $stateParams.idx;
+
+	$scope.currentPersonInfo = {};
 
 	
 
@@ -29,8 +31,6 @@ angular.module('lunch.controllers', [])
 			],
 			adults: []
 		};
-
-$scope.currentPersonInfo = $scope.newSubmission.children[currentPerson];
 
 	$scope.addChild = function() {
 
@@ -51,15 +51,19 @@ $scope.currentPersonInfo = $scope.newSubmission.children[currentPerson];
 		if(isValid) {
 
 			if ( $state.is('child-add') ) {
-				$state.go('child-individual');
+				$state.go('child-individual', { idx: 0 });
+				$scope.currentPersonInfo = $scope.newSubmission.children[0];
 			}
 
 			if ( $state.is('child-individual')) {
-				console.log('here');
-				currentPerson++;
-				if ( $scope.currentPersonInfo ) {
-					console.log('second');
-					$state.go('child-individual');
+				$scope.currentPerson = parseInt($stateParams.idx);
+				$scope.currentPerson++;
+				if ( $scope.newSubmission.children[$scope.currentPerson] ) {
+					$state.go('child-individual', { idx: $scope.currentPerson });
+					$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+					console.log($scope.currentPersonInfo);
+				} else{
+					$state.go('programs');
 				}
 				
 			}
@@ -67,12 +71,8 @@ $scope.currentPersonInfo = $scope.newSubmission.children[currentPerson];
 
 			
 
+
 			$scope.formSubmitted = false;
-
-
-
-
-
 
 		} else {
 			return;

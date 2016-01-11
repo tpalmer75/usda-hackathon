@@ -1,8 +1,10 @@
 <form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
 	<div class="content">
-		<h3>First, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+		<h3 ng-show="!currentPerson">Okay, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+		<h3 ng-show="(currentPerson % 2 === 0)">Great, how about {{ currentPersonInfo.firstName }}?</h3>
+		<h3 ng-show="!(currentPerson % 2 === 0) && (currentPerson > 0)">Okay, and now for {{ currentPersonInfo.firstName }}.</h3>
 		<div class="hr"></div>
-		<p>Is Alex a student?</p>
+		<p>Is {{ currentPersonInfo.firstName }} a student?</p>
 	</div>
 	<footer class="footer-controls clearfix">
 		<button type="Submit" class="usa-button primary-action">Next</button>
