@@ -2271,39 +2271,15 @@ fieldset {
   #main-container .usa-accordion-content {
     height: 125px;
     overflow-y: scroll; }
-  #main-container .user-table {
-    margin-bottom: 0; }
-    #main-container .user-table td {
-      padding: 0 5px;
-      border: 0; }
-      #main-container .user-table td.middle-initial {
-        width: 60px; }
-    #main-container .user-table .table-icon {
-      font-size: 24px;
-      color: #aeb0b5;
-      width: 25px;
-      padding-left: 0; }
-    #main-container .user-table .add-user {
-      color: #2e8540;
-      cursor: pointer; }
-      #main-container .user-table .add-user .table-icon {
-        color: #2e8540; }
-      #main-container .user-table .add-user td {
-        padding-top: 10px; }
-    #main-container .user-table tr.ng-enter {
-      opacity: 0;
-      transition: opacity 0.2s; }
-    #main-container .user-table tr.ng-enter-active {
-      opacity: 1; }
   #main-container .footer-controls {
     background: #f1f1f1;
-    padding: 10px 20px; }
+    padding: 20px; }
     #main-container .footer-controls button {
       float: right; }
     #main-container .footer-controls .back-button {
       color: #5b616b;
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 5px;
       cursor: pointer; }
       #main-container .footer-controls .back-button .fa {
         font-size: 32px;
@@ -2315,6 +2291,67 @@ fieldset {
 
 body form {
   max-width: none; }
+
+form button[type="submit"], form input[type="submit"] {
+  margin: 0; }
+
+.user-table {
+  margin-bottom: 0; }
+  .user-table td {
+    padding: 2px 5px;
+    border: 0; }
+    .user-table td.middle-initial {
+      width: 60px; }
+  .user-table .table-icon {
+    font-size: 24px;
+    color: #aeb0b5;
+    width: 25px;
+    padding-left: 5px; }
+  .user-table .add-user {
+    color: #2e8540;
+    cursor: pointer; }
+    .user-table .add-user .table-icon {
+      color: #2e8540; }
+    .user-table .add-user td {
+      padding-top: 10px; }
+  .user-table tr {
+    border-left: 3px solid transparent;
+    transition: all .2s; }
+    .user-table tr.ng-enter {
+      opacity: 0;
+      transition: opacity 0.2s; }
+    .user-table tr.ng-enter-active {
+      opacity: 1; }
+    .user-table tr.ng-leave {
+      opacity: 1;
+      transition: opacity .2s; }
+    .user-table tr.ng-leave-active {
+      opacity: 0; }
+    .user-table tr:nth-of-type(2) .delete {
+      visibility: hidden; }
+    .user-table tr.usa-input-error {
+      border-left: 3px solid #cd2026; }
+  .user-table .delete {
+    color: #e31c3d;
+    font-size: 24px;
+    width: 28px;
+    cursor: pointer; }
+  .user-table input {
+    margin: 2px;
+    transition: all .1s; }
+  .user-table input.input-error {
+    border: 3px solid #e31c3d;
+    margin: 0; }
+
+.usa-input-error.stand-alone {
+  right: 0;
+  transition: all .5s; }
+  .usa-input-error.stand-alone.ng-show {
+    opacity: 1;
+    height: 111px; }
+  .usa-input-error.stand-alone.ng-hide {
+    opacity: 0;
+    height: 0; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {

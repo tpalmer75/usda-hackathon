@@ -73,52 +73,16 @@
 		overflow-y: scroll;
 	}
 
-	.user-table {
-		margin-bottom: 0;
-		td {
-			padding: 0 5px;
-			border: 0;
-			&.middle-initial {
-				width: 60px;
-			}
-		}
-		.table-icon {
-			font-size: 24px;
-			color: $color-gray-light;
-			width: 25px;
-			padding-left: 0;
-		}
-		.add-user {
-			color: $color-green;
-			cursor: pointer;
-			.table-icon {
-				color: $color-green;
-			}
-			td {
-				padding-top: 10px;
-			}
-		}
-		tr {
-			&.ng-enter {
-				opacity: 0;
-				transition: opacity .2s
-			}
-			&.ng-enter-active {
-				opacity: 1;
-			}
-		}
-	}
-
 	.footer-controls {
 		background: $color-gray-lightest;
-		padding: 10px 20px;
+		padding: 20px;
 		button {
 			float: right;
 		}
 		.back-button {
 			color: $color-gray;
 			display: inline-block;
-			margin-top: 15px;
+			margin-top: 5px;
 			cursor: pointer;
 			.fa {
 				font-size: 32px;
