@@ -15,7 +15,6 @@ angular.module('lunch.controllers', [])
 	$scope.formSubmitted = false;
 	// for showing info for individuals
 	$scope.currentPerson = $stateParams.idx;
-
 	$scope.currentPersonInfo = {};
 
 	
@@ -26,7 +25,13 @@ angular.module('lunch.controllers', [])
 				{
 					firstName: '',
 					middleInitial: '',
-					lastName: ''
+					lastName: '',
+					student: 0,
+					fosterChild: 0,
+					homelessMigrantRunaway: 0,
+					income: 0,
+					incomeAmount: 0,
+					incomeFrequency: 0
 				}
 			],
 			adults: []
@@ -37,7 +42,13 @@ angular.module('lunch.controllers', [])
 		var newChild = {
 			firstName: '',
 			middleInitial: '',
-			lastName: ''
+			lastName: '',
+			student: 0,
+			fosterChild: 0,
+			homelessMigrantRunaway: 0,
+			income: 0,
+			incomeAmount: 0,
+			incomeFrequency: 0
 		};
 
 		$scope.newSubmission.children.push(newChild);

@@ -2295,6 +2295,14 @@ body form {
 form button[type="submit"], form input[type="submit"] {
   margin: 0; }
 
+form input[type="radio"] + label {
+  width: 80px;
+  display: inline-block;
+  margin-top: 0; }
+
+form .compact > .usa-width-one-half {
+  height: 50px; }
+
 .user-table {
   margin-bottom: 0; }
   .user-table td {
@@ -2337,21 +2345,72 @@ form button[type="submit"], form input[type="submit"] {
     width: 28px;
     cursor: pointer; }
   .user-table input {
-    margin: 2px;
-    transition: all .1s; }
+    margin: 2px; }
   .user-table input.input-error {
     border: 3px solid #e31c3d;
     margin: 0; }
 
 .usa-input-error.stand-alone {
   right: 0;
-  transition: all .5s; }
+  height: auto;
+  opacity: 1;
+  transition: all .5s;
+  position: relative;
+  left: -30px;
+  padding-left: 26px;
+  overflow: hidden; }
   .usa-input-error.stand-alone.ng-show {
     opacity: 1;
     height: 111px; }
   .usa-input-error.stand-alone.ng-hide {
     opacity: 0;
-    height: 0; }
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0; }
+
+.boolean-input-error {
+  border-left: 4px solid #cd2026;
+  position: relative;
+  left: -30px; }
+  .boolean-input-error > .usa-width-one-half {
+    padding-left: 29px; }
+    .boolean-input-error > .usa-width-one-half:first-of-type {
+      padding-left: 26px; }
+  .boolean-input-error input[type="radio"] + label::before {
+    box-shadow: 0 0 0 2px white, 0 0 0 5px #e31c3d; }
+
+.usa-grid-full.income {
+  transition: height .3s, opacity .15s;
+  height: 73px; }
+  .usa-grid-full.income > .usa-width-one-half:first-of-type {
+    height: 73px; }
+  .usa-grid-full.income.ng-enter {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height .3s, opacity .3s .15s; }
+  .usa-grid-full.income.ng-enter-active {
+    height: 73px;
+    opacity: 1; }
+  .usa-grid-full.income.ng-leave-active {
+    height: 0;
+    opacity: 0;
+    overflow: hidden; }
+  .usa-grid-full.income .income-input {
+    transition: height .5s, opacity .2s;
+    height: 73px; }
+    .usa-grid-full.income .income-input label {
+      margin-top: 0; }
+    .usa-grid-full.income .income-input .dollar-sign {
+      position: relative; }
+      .usa-grid-full.income .income-input .dollar-sign:before {
+        content: "$";
+        position: absolute;
+        top: 11px;
+        left: 8px; }
+    .usa-grid-full.income .income-input input[type="num"] {
+      padding-left: 20px; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {
