@@ -4,7 +4,7 @@
         <h3 ng-show="(currentPerson % 2 === 0)">Great, how about {{ currentPersonInfo.firstName }}?</h3>
         <h3 ng-show="!(currentPerson % 2 === 0) && (currentPerson > 0)">Okay, and now for {{ currentPersonInfo.firstName }}.</h3>
         <div class="hr"></div>
-        <div class="usa-grid-full compact" ng-class="{ 'boolean-input-error': userForm.studentYes.$invalid && formSubmitted }">
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.studentYes.$invalid && formSubmitted }">
             <div class="usa-width-one-half">
                 <p>Is {{ currentPersonInfo.firstName }} a student?</p>
             </div>
@@ -17,7 +17,7 @@
                 </p>
             </div>
         </div>
-        <div class="usa-grid-full compact" ng-class="{ 'boolean-input-error': userForm.fosterChildYes.$invalid && formSubmitted }">
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.fosterChildYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
             <div class="usa-width-one-half">
                 <p>Is {{ currentPersonInfo.firstName }} a foster child?</p>
             </div>
@@ -30,20 +30,20 @@
                 </p>
             </div>
         </div>
-        <div class="usa-grid-full compact" ng-class="{ 'boolean-input-error': userForm.homelessMigrantRunawayYes.$invalid && formSubmitted }">
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.homelessMigrantRunawayYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
             <div class="usa-width-one-half">
                 <p>Is {{ currentPersonInfo.firstName }} a homeless, migrant, or a runaway?</p>
             </div>
             <div class="usa-width-one-half">
                 <p>
-                    <input type="radio" id="homelessMigrantRunawayYes" name="homelessMigrantRunawayYes" ng-value="true" ng-model="currentPersonInfo.homeslessMigrantRunaway" required>
+                    <input type="radio" id="homelessMigrantRunawayYes" name="homelessMigrantRunawayYes" ng-value="true" ng-model="currentPersonInfo.homelessMigrantRunaway" required>
                     <label for="homelessMigrantRunawayYes">Yes</label>
-                    <input type="radio" id="homelessMigrantRunawayNo" name="homelessMigrantRunawayNo" ng-value="false" ng-model="currentPersonInfo.homeslessMigrantRunaway">
+                    <input type="radio" id="homelessMigrantRunawayNo" name="homelessMigrantRunawayNo" ng-value="false" ng-model="currentPersonInfo.homelessMigrantRunaway">
                     <label for="homelessMigrantRunawayNo">No</label>
                 </p>
             </div>
         </div>
-        <div class="usa-grid-full" ng-class="{ 'boolean-input-error': userForm.incomeYes.$invalid && formSubmitted }">
+        <div class="usa-grid-full" ng-class="{ 'input-error-boolean': userForm.incomeYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
             <div class="usa-width-one-half">
                 <p>Does {{ currentPersonInfo.firstName }} earn an income?</p>
             </div>
@@ -56,24 +56,23 @@
                 </p>
             </div>
         </div>
-        <div class="usa-grid-full income" ng-if="currentPersonInfo.income">
+        <div class="usa-grid-full income" ng-form="subForm" ng-class="{ 'error-income' : subForm.$invalid && subForm.incomeAmount.$touched || userForm.subForm.$invalid && formSubmitted } " ng-if="currentPersonInfo.income">
         	<div class="usa-width-one-half">
         	</div>
         	<div class="usa-width-one-half">
         		<div class="usa-grid-full income-input">
-                    <div class="usa-width-one-half">
-                        <label>How much?</label>
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm.incomeAmount.$invalid && subForm.incomeAmount.$touched || userForm.subForm.$invalid && formSubmitted }">
+                        <label>How much before tax?</label>
                         <div class="dollar-sign">
-                        	<input type="num" ng-model="currentPersonInfo.incomeAmount" required>
+                        	<input type="number" ng-model="currentPersonInfo.incomeAmount" name="incomeAmount" required>
                     	</div>
                     </div>
-                    <div class="usa-width-one-half">
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm.incomeFrequency.$invalid && subForm.incomeFrequency.$touched || userForm.subForm.$invalid && formSubmitted }">
                         <label for="frequency">How often?</label>
-                        <select name="frequency" id="frequency" ng-model="currentPersonInfo.incomeFrequency" required>
-                            <option>Weekly</option>
-                            <option>Bi-weekly</option>
-                            <option>Twice per month</option>
-                            <option>Monthly</option>
+                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.incomeFrequency" required>
+                            <option value="52">Weekly</option>
+                            <option value="26">Bi-weekly</option>
+                            <option value="12">Monthly</option>
                         </select>
                     </div>
                 </div>

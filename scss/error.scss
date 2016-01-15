@@ -1,0 +1,64 @@
+.user-table {
+	tr.usa-input-error {
+		border-left: 3px solid #cd2026;
+	}
+	input.input-error {
+		border: 3px solid $color-secondary;
+		margin: 0;
+	}
+}
+
+.usa-input-error.stand-alone {
+	right: 0;
+	height: auto;
+	opacity: 1;
+	transition: all .5s;
+	position: relative;
+	left: -30px;
+	padding-left: 26px;
+	overflow: hidden;
+	&.ng-show {
+		opacity: 1;
+		height: 111px;
+
+	}
+	&.ng-hide {
+		opacity: 0;
+		height: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
+	}
+}
+
+.input-error-boolean {
+	border-left: 4px solid $color-secondary-dark;
+	margin-left: -30px;
+	margin-right: -27px;
+	> .usa-width-one-half {
+		&:first-of-type {
+			padding-left: 26px;
+		}
+	}
+	input[type="radio"] + label::before {
+		box-shadow: 0 0 0 2px white, 0 0 0 5px $color-secondary;
+	}
+}
+
+.error-income {
+	border-left: 4px solid $color-secondary-dark;
+	margin-left: -30px;
+	> .usa-width-one-half:nth-of-type(2) {
+		padding-left: 10px;
+	}
+}
+
+.input-error-income {
+	input[type="number"], input[type="text"], select {
+		border: 3px solid $color-secondary-dark;
+	}
+}
+
+
+
+

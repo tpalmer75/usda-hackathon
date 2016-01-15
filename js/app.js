@@ -24,6 +24,10 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('legal', {
             url: '/legal',
             templateUrl : 'templates/legal.html'
+        })
+        .state('programs', {
+            url: '/programs',
+            templateUrl : 'templates/programs.html'
         });
 
 });

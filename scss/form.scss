@@ -82,49 +82,13 @@ form .compact > .usa-width-one-half {
 	}
 }
 
-.usa-input-error.stand-alone {
-	right: 0;
-	height: auto;
-	opacity: 1;
-	transition: all .5s;
-	position: relative;
-	left: -30px;
-	padding-left: 26px;
-	overflow: hidden;
-	&.ng-show {
-		opacity: 1;
-		height: 111px;
 
-	}
-	&.ng-hide {
-		opacity: 0;
-		height: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-		margin: 0;
-	}
-}
 
-.boolean-input-error {
-	border-left: 4px solid $color-secondary-dark;
-	position: relative;
-	left: -30px;
-	> .usa-width-one-half {
-		padding-left: 29px;
-		&:first-of-type {
-			padding-left: 26px;
-		}
-	}
-	input[type="radio"] + label::before {
-		box-shadow: 0 0 0 2px white, 0 0 0 5px $color-secondary;
-	}
-}
-
-.usa-grid-full.income {
+.usa-grid-full.secondary{
 	transition: height .3s, opacity .15s;
 	height: 73px;
-	> .usa-width-one-half:first-of-type {
-		height: 73px;
+	> .usa-width-one-half {
+		min-height: 73px;
 	}
 	&.ng-enter {
 		height: 0;
@@ -142,7 +106,6 @@ form .compact > .usa-width-one-half {
 		overflow: hidden;
 	}
 	.income-input {
-		transition: height .5s, opacity .2s;
 		height: 73px;
 		label {
 			margin-top: 0;
@@ -156,7 +119,7 @@ form .compact > .usa-width-one-half {
 				left: 8px;
 			}
 		}
-		input[type="num"] {
+		input[type="number"] {
 			padding-left: 20px;
 		}
 	}
