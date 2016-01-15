@@ -2246,10 +2246,7 @@ fieldset {
     background: #0071bc;
     margin: 1.75em 0; }
   #main-container .content {
-    padding: 30px 30px 40px; }
-    @media screen and (max-width: 500px) {
-      #main-container .content {
-        padding: 20px 10px 20px; } }
+    padding: 30px; }
   #main-container .landing .usa-grid {
     padding: 0; }
     #main-container .landing .usa-grid .image-container {
@@ -2350,36 +2347,38 @@ form .compact > .usa-width-one-half {
     border: 3px solid #e31c3d;
     margin: 0; }
 
-.usa-grid-full.secondary {
-  transition: height .3s, opacity .15s;
+.usa-grid-full.ng-animate, .usa-grid-one-whole.ng-animate {
+  height: 73px;
+  overflow: hidden;
+  transition: height .3s, opacity .15s; }
+.usa-grid-full.ng-enter, .usa-grid-one-whole.ng-enter {
+  height: 0;
+  opacity: 0;
+  transition: height .3s, opacity .3s .15s; }
+.usa-grid-full.ng-enter-active, .usa-grid-one-whole.ng-enter-active {
+  height: 73px;
+  opacity: 1; }
+.usa-grid-full.ng-leave-active, .usa-grid-one-whole.ng-leave-active {
+  height: 0;
+  opacity: 0; }
+
+.usa-grid > .usa-width-one-half, .usa-grid-full > .usa-width-one-half {
+  min-height: 73px; }
+.usa-grid .income-input, .usa-grid-full .income-input {
   height: 73px; }
-  .usa-grid-full.secondary > .usa-width-one-half {
-    min-height: 73px; }
-  .usa-grid-full.secondary.ng-enter {
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: height .3s, opacity .3s .15s; }
-  .usa-grid-full.secondary.ng-enter-active {
-    height: 73px;
-    opacity: 1; }
-  .usa-grid-full.secondary.ng-leave-active {
-    height: 0;
-    opacity: 0;
-    overflow: hidden; }
-  .usa-grid-full.secondary .income-input {
-    height: 73px; }
-    .usa-grid-full.secondary .income-input label {
-      margin-top: 0; }
-    .usa-grid-full.secondary .income-input .dollar-sign {
-      position: relative; }
-      .usa-grid-full.secondary .income-input .dollar-sign:before {
-        content: "$";
-        position: absolute;
-        top: 11px;
-        left: 8px; }
-    .usa-grid-full.secondary .income-input input[type="number"] {
-      padding-left: 20px; }
+  .usa-grid .income-input label, .usa-grid-full .income-input label {
+    margin-top: 0; }
+  .usa-grid .income-input .dollar-sign, .usa-grid-full .income-input .dollar-sign {
+    position: relative; }
+    .usa-grid .income-input .dollar-sign:before, .usa-grid-full .income-input .dollar-sign:before {
+      content: "$";
+      position: absolute;
+      top: 11px;
+      left: 8px; }
+  .usa-grid .income-input input[type="number"], .usa-grid-full .income-input input[type="number"] {
+    padding-left: 20px; }
+.usa-grid label, .usa-grid-full label {
+  margin: 0; }
 
 .user-table tr.usa-input-error {
   border-left: 3px solid #cd2026; }
@@ -2387,24 +2386,9 @@ form .compact > .usa-width-one-half {
   border: 3px solid #e31c3d;
   margin: 0; }
 
-.usa-input-error.stand-alone {
-  right: 0;
-  height: auto;
-  opacity: 1;
-  transition: all .5s;
-  position: relative;
-  left: -30px;
-  padding-left: 26px;
-  overflow: hidden; }
-  .usa-input-error.stand-alone.ng-show {
-    opacity: 1;
-    height: 111px; }
-  .usa-input-error.stand-alone.ng-hide {
-    opacity: 0;
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin: 0; }
+.usa-input-error {
+  margin-top: 0;
+  transition: padding-top .5s, padding-bottom .5s; }
 
 .input-error-boolean {
   border-left: 4px solid #cd2026;

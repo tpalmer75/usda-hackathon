@@ -8,27 +8,28 @@
 	}
 }
 
-.usa-input-error.stand-alone {
-	right: 0;
-	height: auto;
-	opacity: 1;
-	transition: all .5s;
-	position: relative;
-	left: -30px;
-	padding-left: 26px;
-	overflow: hidden;
-	&.ng-show {
-		opacity: 1;
-		height: 111px;
+.usa-input-error {
+	//height: auto;
+	//opacity: 1;
+	margin-top: 0;
+	//transition: all .5s;
+	//overflow: hidden;
+	transition: padding-top .5s, padding-bottom .5s;
+	// &.ng-animate {
 
-	}
-	&.ng-hide {
-		opacity: 0;
-		height: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-		margin: 0;
-	}
+	// }
+	// &.ng-show {
+	// 	opacity: 1;
+	// 	height: 111px;
+
+	// }
+	// &.ng-hide {
+	// 	opacity: 0;
+	// 	height: 0;
+	// 	padding-top: 0;
+	// 	padding-bottom: 0;
+	// 	margin: 0;
+	// }
 }
 
 .input-error-boolean {

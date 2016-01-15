@@ -82,18 +82,15 @@ form .compact > .usa-width-one-half {
 	}
 }
 
-
-
-.usa-grid-full.secondary{
-	transition: height .3s, opacity .15s;
-	height: 73px;
-	> .usa-width-one-half {
-		min-height: 73px;
+.usa-grid-full, .usa-grid-one-whole {
+	&.ng-animate {
+		height: 73px;
+		overflow: hidden;
+		transition: height .3s, opacity .15s;
 	}
 	&.ng-enter {
 		height: 0;
 		opacity: 0;
-		overflow: hidden;
 		transition: height .3s, opacity .3s .15s;
 	}
 	&.ng-enter-active {
@@ -103,7 +100,14 @@ form .compact > .usa-width-one-half {
 	&.ng-leave-active {
 		height: 0;
 		opacity: 0;
-		overflow: hidden;
+	}
+}
+
+
+
+.usa-grid, .usa-grid-full {
+	> .usa-width-one-half {
+		min-height: 73px;
 	}
 	.income-input {
 		height: 73px;
@@ -122,5 +126,8 @@ form .compact > .usa-width-one-half {
 		input[type="number"] {
 			padding-left: 20px;
 		}
+	}
+	label {
+		margin: 0;
 	}
 }
