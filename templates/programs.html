@@ -4,7 +4,7 @@
             <h3>Any other programs?</h3>
             <div class="hr"></div>
         </div>
-        <div ng-class="{ 'usa-input-error': userForm.programsYes.$invalid && formSubmitted }">
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.programsYes.$invalid && formSubmitted }">
             <div class="usa-grid-full">
                 
                     <div class="usa-width-one-half">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
         </div>
-        <div ng-class="{ 'usa-input-error' : subForm.$invalid && subForm.incomeFrequency.$dirty || userForm.subForm.$invalid && formSubmitted } ">
+        <div class="error-wrapper" ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && userForm.subForm.incomeFrequency.$dirty || userForm.subForm.$invalid && formSubmitted } ">
             <div class="usa-grid-full secondary" ng-form="subForm" ng-if="newSubmission.programs">
             	<div class="usa-width-one-half">
                 <p>What's the case number? (Just one is fine.)</p>
@@ -33,9 +33,8 @@
                 </div>
             </div>
     	</div>
-        <div class="usa-grid-full">
-            <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs"><p class="usa-input-error-message">You're missing some information. This question is required.</p></div>
-            <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && newSubmission.programs"><p class="usa-input-error-message">You're missing some information. These questions are required.</p></div>
+        <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs || userForm.subForm.$invalid && formSubmitted && !userForm.subForm.$pristine">
+            <p class="usa-input-error-message">You're missing some information. <span ng-if="!newSubmission.programs">This question is </span><span ng-if="newSubmission.programs">These questions are</span> required.</p>
         </div>
     </div>
     <footer class="footer-controls clearfix">

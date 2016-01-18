@@ -27,7 +27,15 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('programs', {
             url: '/programs',
-            templateUrl : 'templates/programs.html'
+            templateUrl: 'templates/programs.html'
+        })
+        .state('adult-add', {
+            url: '/adults',
+            templateUrl: 'templates/adult-add.html'
+        })
+        .state('adult-individual', {
+            url: '/adults/:idx',
+            templateUrl : 'templates/adult-individual.html'
         });
 
 });

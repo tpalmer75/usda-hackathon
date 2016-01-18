@@ -1,0 +1,179 @@
+<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <h3 ng-show="!currentPerson">Okay, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+        <h3 ng-show="(currentPerson % 2 === 0) && currentPerson != 0">Great, how about {{ currentPersonInfo.firstName }}?</h3>
+        <h3 ng-show="!(currentPerson % 2 === 0) && (currentPerson > 0)">Okay, and now for {{ currentPersonInfo.firstName }}.</h3>
+        <div class="hr"></div>
+        <div 
+            class="error-wrapper" 
+            ng-class="{ 'usa-input-error': userForm.workIncomeYes.$invalid && formSubmitted }">
+            <div class="usa-grid-full compact">
+                <div class="usa-width-one-half">
+                    <p>Does {{ currentPersonInfo.firstName }} earn income from work?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <p>
+                        <input 
+                            type="radio" 
+                            id="workIncomeYes" 
+                            name="workIncomeYes" 
+                            ng-value="true" 
+                            ng-model="currentPersonInfo.workIncome" 
+                            required>
+                        <label for="workIncomeYes">Yes</label>
+                        <input 
+                            type="radio" 
+                            id="workIncomeNo" 
+                            name="workIncomeNo" 
+                            ng-value="false" 
+                            ng-model="currentPersonInfo.workIncome" 
+                            required>
+                        <label for="workIncomeNo">No</label>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div 
+            class="usa-grid-full error-wrapper" 
+            ng-form="subForm1"  
+            ng-class="{ 'usa-input-error' : subForm1.$invalid && subForm1.incomeAmount.$touched || userForm.subForm1.$invalid && formSubmitted } " 
+            ng-if="currentPersonInfo.workIncome">
+            <div class="usa-width-one-half">
+                <p>Write {{ currentPersonInfo.firstName }}'s earnings here (before tax).<p>
+            </div>
+            <div class="usa-width-one-half">
+                <div class="usa-grid-full income-input">
+                    <div class="usa-width-one-half">
+                        <label>How much?</label>
+                        <div class="dollar-sign">
+                            <input type="number" ng-model="currentPersonInfo.workIncomeAmount" name="incomeAmount" required>
+                        </div>
+                    </div>
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm1.incomeFrequency.$invalid && subForm1.incomeFrequency.$touched || userForm.subForm1.$invalid && formSubmitted }">
+                        <label for="frequency">How often?</label>
+                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.workIncomeFrequency" required>
+                            <option value="52">Weekly</option>
+                            <option value="26">Bi-weekly</option>
+                            <option value="24">2x per month</option>
+                            <option value="12">Monthly</option>
+                            <option value="1">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.fosterChildYes.$invalid && formSubmitted }">
+            <div class="usa-grid-full compact" ng-if="!newSubmission.programs">
+                <div class="usa-width-one-half">
+                    <p>Does {{ currentPersonInfo.firstName }} recieve public assistance, child support, or alimony?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <p>
+                        <input 
+                            type="radio" 
+                            id="secondIncomeYes" 
+                            name="secondIncomeYes" 
+                            ng-value="true" 
+                            ng-model="currentPersonInfo.secondIncome" 
+                            required>
+                        <label for="secondIncomeYes">Yes</label>
+                        <input 
+                            type="radio" 
+                            id="secondIncomeNo" 
+                            name="secondIncomeNo" 
+                            ng-value="false" 
+                            ng-model="currentPersonInfo.secondIncome"
+                            required>
+                        <label for="secondIncomeNo">No</label>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div 
+            class="usa-grid-full error-wrapper" 
+            ng-form="subForm2"  
+            ng-class="{ 'usa-input-error' : subForm2.$invalid && subForm2.incomeAmount.$touched || userForm.subForm2.$invalid && formSubmitted } " 
+            ng-if="currentPersonInfo.secondIncome">
+            <div class="usa-width-one-half">
+                <p>Write {{ currentPersonInfo.firstName }}'s income from these sources.<p>
+            </div>
+            <div class="usa-width-one-half">
+                <div class="usa-grid-full income-input">
+                    <div class="usa-width-one-half">
+                        <label>How much?</label>
+                        <div class="dollar-sign">
+                            <input type="number" ng-model="currentPersonInfo.secondIncomeAmount" name="incomeAmount" required>
+                        </div>
+                    </div>
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm2.incomeFrequency.$invalid && subForm2.incomeFrequency.$touched || userForm.subForm2.$invalid && formSubmitted }">
+                        <label for="frequency">How often?</label>
+                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.secondIncomeFrequency" required>
+                            <option value="52">Weekly</option>
+                            <option value="26">Bi-weekly</option>
+                            <option value="24">2x per month</option>
+                            <option value="12">Monthly</option>
+                            <option value="1">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.thirdIncomeYes.$invalid && formSubmitted }">
+            <div class="usa-grid-full compact" ng-if="!newSubmission.programs">
+                <div class="usa-width-one-half">
+                    <p>Does {{ currentPersonInfo.firstName }} recieve pensions, retirement, or any other form of income?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <p>
+                        <input type="radio" id="thirdIncomeYes" name="thirdIncomeYes" ng-value="true" ng-model="currentPersonInfo.thirdIncome" required>
+                        <label for="thirdIncomeYes">Yes</label>
+                        <input type="radio" id="thirdIncomeNo" name="thirdIncomeNo" ng-value="false" ng-model="currentPersonInfo.thirdIncome">
+                        <label for="thirdIncomeNo">No</label>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div 
+            class="usa-grid-full error-wrapper" 
+            ng-form="subForm3"  
+            ng-class="{ 'usa-input-error' : subForm3.$invalid && subForm3.incomeAmount.$touched || userForm.subForm3.$invalid && formSubmitted } " 
+            ng-if="currentPersonInfo.thirdIncome">
+            <div class="usa-width-one-half">
+                <p>Write {{ currentPersonInfo.firstName }}'s income from these sources.<p>
+            </div>
+            <div class="usa-width-one-half">
+                <div class="usa-grid-full income-input">
+                    <div class="usa-width-one-half">
+                        <label>How much?</label>
+                        <div class="dollar-sign">
+                            <input type="number" ng-model="currentPersonInfo.thirdIncomeAmount" name="incomeAmount" required>
+                        </div>
+                    </div>
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm3.incomeFrequency.$invalid && subForm3.incomeFrequency.$touched || userForm.subForm3.$invalid && formSubmitted }">
+                        <label for="frequency">How often?</label>
+                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.thirdIncomeFrequency" required>
+                            <option value="52">Weekly</option>
+                            <option value="26">Bi-weekly</option>
+                            <option value="24">2x per month</option>
+                            <option value="12">Monthly</option>
+                            <option value="1">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. All of these questions are required.</p></div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>
