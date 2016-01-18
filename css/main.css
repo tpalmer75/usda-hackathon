@@ -2246,10 +2246,7 @@ fieldset {
     background: #0071bc;
     margin: 1.75em 0; }
   #main-container .content {
-    padding: 30px 30px 40px; }
-    @media screen and (max-width: 500px) {
-      #main-container .content {
-        padding: 20px 10px 20px; } }
+    padding: 30px; }
   #main-container .landing .usa-grid {
     padding: 0; }
     #main-container .landing .usa-grid .image-container {
@@ -2295,6 +2292,14 @@ body form {
 form button[type="submit"], form input[type="submit"] {
   margin: 0; }
 
+form input[type="radio"] + label {
+  width: 80px;
+  display: inline-block;
+  margin-top: 0; }
+
+form .compact > .usa-width-one-half {
+  height: 50px; }
+
 .user-table {
   margin-bottom: 0; }
   .user-table td {
@@ -2337,21 +2342,71 @@ form button[type="submit"], form input[type="submit"] {
     width: 28px;
     cursor: pointer; }
   .user-table input {
-    margin: 2px;
-    transition: all .1s; }
+    margin: 2px; }
   .user-table input.input-error {
     border: 3px solid #e31c3d;
     margin: 0; }
 
-.usa-input-error.stand-alone {
-  right: 0;
-  transition: all .5s; }
-  .usa-input-error.stand-alone.ng-show {
-    opacity: 1;
-    height: 111px; }
-  .usa-input-error.stand-alone.ng-hide {
-    opacity: 0;
-    height: 0; }
+.usa-grid-full.ng-animate, .usa-grid-one-whole.ng-animate {
+  height: 73px;
+  overflow: hidden;
+  transition: height .3s, opacity .15s; }
+.usa-grid-full.ng-enter, .usa-grid-one-whole.ng-enter {
+  height: 0;
+  opacity: 0;
+  transition: height .3s, opacity .3s .15s; }
+.usa-grid-full.ng-enter-active, .usa-grid-one-whole.ng-enter-active {
+  height: 73px;
+  opacity: 1; }
+.usa-grid-full.ng-leave-active, .usa-grid-one-whole.ng-leave-active {
+  height: 0;
+  opacity: 0; }
+
+.usa-grid > .usa-width-one-half, .usa-grid-full > .usa-width-one-half {
+  min-height: 73px; }
+.usa-grid .income-input, .usa-grid-full .income-input {
+  height: 73px; }
+  .usa-grid .income-input label, .usa-grid-full .income-input label {
+    margin-top: 0; }
+  .usa-grid .income-input .dollar-sign, .usa-grid-full .income-input .dollar-sign {
+    position: relative; }
+    .usa-grid .income-input .dollar-sign:before, .usa-grid-full .income-input .dollar-sign:before {
+      content: "$";
+      position: absolute;
+      top: 11px;
+      left: 8px; }
+  .usa-grid .income-input input[type="number"], .usa-grid-full .income-input input[type="number"] {
+    padding-left: 20px; }
+.usa-grid label, .usa-grid-full label {
+  margin: 0; }
+
+.user-table tr.usa-input-error {
+  border-left: 3px solid #cd2026; }
+.user-table input.input-error {
+  border: 3px solid #e31c3d;
+  margin: 0; }
+
+.usa-input-error {
+  margin-top: 0;
+  transition: padding-top .5s, padding-bottom .5s; }
+
+.input-error-boolean {
+  border-left: 4px solid #cd2026;
+  margin-left: -30px;
+  margin-right: -27px; }
+  .input-error-boolean > .usa-width-one-half:first-of-type {
+    padding-left: 26px; }
+  .input-error-boolean input[type="radio"] + label::before {
+    box-shadow: 0 0 0 2px white, 0 0 0 5px #e31c3d; }
+
+.error-income {
+  border-left: 4px solid #cd2026;
+  margin-left: -30px; }
+  .error-income > .usa-width-one-half:nth-of-type(2) {
+    padding-left: 10px; }
+
+.input-error-income input[type="number"], .input-error-income input[type="text"], .input-error-income select {
+  border: 3px solid #cd2026; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {

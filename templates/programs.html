@@ -1,0 +1,45 @@
+<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>Any other programs?</h3>
+            <div class="hr"></div>
+        </div>
+        <div ng-class="{ 'usa-input-error': userForm.programsYes.$invalid && formSubmitted }">
+            <div class="usa-grid-full">
+                
+                    <div class="usa-width-one-half">
+                        <p>Is anyone in the house (including you) currently participating in  <a>SNAP</a>, <a>TANF</a>, or <a>FDPIR?</a></p>
+                    </div>
+                    <div class="usa-width-one-half">
+                        <p>
+                            <input type="radio" id="programsYes" name="programsYes" ng-value="true" ng-model="newSubmission.programs" required>
+                            <label for="programsYes">Yes</label>
+                            <input type="radio" id="programsNo" name="programsNo" ng-value="false" ng-model="newSubmission.programs">
+                            <label for="programsNo">No</label>
+                        </p>
+                    </div>
+                </div>
+        </div>
+        <div ng-class="{ 'usa-input-error' : subForm.$invalid && subForm.incomeFrequency.$dirty || userForm.subForm.$invalid && formSubmitted } ">
+            <div class="usa-grid-full secondary" ng-form="subForm" ng-if="newSubmission.programs">
+            	<div class="usa-width-one-half">
+                <p>What's the case number? (Just one is fine.)</p>
+            	</div>
+                <div class="usa-width-one-half" ng-class="{ 'input-error-box' : subForm.caseNumber.$invalid && subForm.caseNumber.$touched || userForm.subForm.$invalid && formSubmitted }">
+                    <label>Case number</label>
+                    <div>
+                    	<input type="number" ng-model="newSubmission.caseNumber" name="caseNumber" required>
+                	</div>
+                </div>
+            </div>
+    	</div>
+        <div class="usa-grid-full">
+            <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs"><p class="usa-input-error-message">You're missing some information. This question is required.</p></div>
+            <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && newSubmission.programs"><p class="usa-input-error-message">You're missing some information. These questions are required.</p></div>
+        </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>

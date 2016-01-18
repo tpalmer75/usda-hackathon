@@ -1,11 +1,87 @@
 <form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
-	<div class="content">
-		<h3>First, let’s start with {{ currentPersonInfo.firstName }}.</h3>
-		<div class="hr"></div>
-		<p>Is Alex a student?</p>
-	</div>
-	<footer class="footer-controls clearfix">
-		<button type="Submit" class="usa-button primary-action">Next</button>
-		<div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
-	</footer>
+    <div class="content usa-grid">
+        <h3 ng-show="!currentPerson">Okay, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+        <h3 ng-show="(currentPerson % 2 === 0)">Great, how about {{ currentPersonInfo.firstName }}?</h3>
+        <h3 ng-show="!(currentPerson % 2 === 0) && (currentPerson > 0)">Okay, and now for {{ currentPersonInfo.firstName }}.</h3>
+        <div class="hr"></div>
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.studentYes.$invalid && formSubmitted }">
+            <div class="usa-width-one-half">
+                <p>Is {{ currentPersonInfo.firstName }} a student?</p>
+            </div>
+            <div class="usa-width-one-half">
+                <p>
+                    <input type="radio" id="studentYes" name="studentYes" ng-value="true" ng-model="currentPersonInfo.student" required>
+                    <label for="studentYes">Yes</label>
+                    <input type="radio" id="studentNo" name="studentNo" ng-value="false" ng-model="currentPersonInfo.student">
+                    <label for="studentNo">No</label>
+                </p>
+            </div>
+        </div>
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.fosterChildYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
+            <div class="usa-width-one-half">
+                <p>Is {{ currentPersonInfo.firstName }} a foster child?</p>
+            </div>
+            <div class="usa-width-one-half">
+                <p>
+                    <input type="radio" id="fosterChildYes" name="fosterChildYes" ng-value="true" ng-model="currentPersonInfo.fosterChild" required>
+                    <label for="fosterChildYes">Yes</label>
+                    <input type="radio" id="fosterChildNo" name="fosterChildNo" ng-value="false" ng-model="currentPersonInfo.fosterChild">
+                    <label for="fosterChildNo">No</label>
+                </p>
+            </div>
+        </div>
+        <div class="usa-grid-full compact" ng-class="{ 'input-error-boolean': userForm.homelessMigrantRunawayYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
+            <div class="usa-width-one-half">
+                <p>Is {{ currentPersonInfo.firstName }} a homeless, migrant, or a runaway?</p>
+            </div>
+            <div class="usa-width-one-half">
+                <p>
+                    <input type="radio" id="homelessMigrantRunawayYes" name="homelessMigrantRunawayYes" ng-value="true" ng-model="currentPersonInfo.homelessMigrantRunaway" required>
+                    <label for="homelessMigrantRunawayYes">Yes</label>
+                    <input type="radio" id="homelessMigrantRunawayNo" name="homelessMigrantRunawayNo" ng-value="false" ng-model="currentPersonInfo.homelessMigrantRunaway">
+                    <label for="homelessMigrantRunawayNo">No</label>
+                </p>
+            </div>
+        </div>
+        <div class="usa-grid-full" ng-class="{ 'input-error-boolean': userForm.incomeYes.$invalid && formSubmitted }" ng-if="!newSubmission.programs">
+            <div class="usa-width-one-half">
+                <p>Does {{ currentPersonInfo.firstName }} earn an income?</p>
+            </div>
+            <div class="usa-width-one-half">
+                <p>
+                    <input type="radio" id="incomeYes" name="incomeYes" ng-value="true" ng-model="currentPersonInfo.income" required>
+                    <label for="incomeYes">Yes</label>
+                    <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income">
+                    <label for="incomeNo">No</label>
+                </p>
+            </div>
+        </div>
+        <div class="usa-grid-full income" ng-form="subForm" ng-class="{ 'error-income' : subForm.$invalid && subForm.incomeAmount.$touched || userForm.subForm.$invalid && formSubmitted } " ng-if="currentPersonInfo.income">
+        	<div class="usa-width-one-half">
+        	</div>
+        	<div class="usa-width-one-half">
+        		<div class="usa-grid-full income-input">
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm.incomeAmount.$invalid && subForm.incomeAmount.$touched || userForm.subForm.$invalid && formSubmitted }">
+                        <label>How much before tax?</label>
+                        <div class="dollar-sign">
+                        	<input type="number" ng-model="currentPersonInfo.incomeAmount" name="incomeAmount" required>
+                    	</div>
+                    </div>
+                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm.incomeFrequency.$invalid && subForm.incomeFrequency.$touched || userForm.subForm.$invalid && formSubmitted }">
+                        <label for="frequency">How often?</label>
+                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.incomeFrequency" required>
+                            <option value="52">Weekly</option>
+                            <option value="26">Bi-weekly</option>
+                            <option value="12">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+        	</div>
+    	</div>
+        <div class="usa-input-error stand-alone" ng-show="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. All of these questions are required.</p></div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
 </form>

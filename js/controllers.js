@@ -2,7 +2,7 @@
 
 angular.module('lunch.controllers', [])
 
-.controller('MainCtrl', function($rootScope, $scope, $state) {
+.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams) {
 	
 	//var data = Submissions.all();
 
@@ -11,33 +11,36 @@ angular.module('lunch.controllers', [])
 	// 	data.$add(newInfo);
 	// };
 
+
+	// the entire object for our user data
+	$scope.newSubmission = {};
 	// for form validation on /child-add
 	$scope.formSubmitted = false;
 	// for showing info for individuals
-	var currentPerson = 0;
+	$scope.currentPerson = $stateParams.idx;
+	// when going through children and adults
+	$scope.currentPersonInfo = {};
 
-	
 
-	$scope.newSubmission = 
-		{
+	$scope.resetData = function() {
+		$scope.newSubmission = {
 			children: [
 				{
 					firstName: '',
 					middleInitial: '',
-					lastName: ''
+					lastName: '',
 				}
 			],
 			adults: []
 		};
-
-$scope.currentPersonInfo = $scope.newSubmission.children[currentPerson];
+	};
 
 	$scope.addChild = function() {
 
 		var newChild = {
 			firstName: '',
 			middleInitial: '',
-			lastName: ''
+			lastName: '',
 		};
 
 		$scope.newSubmission.children.push(newChild);
@@ -50,29 +53,33 @@ $scope.currentPersonInfo = $scope.newSubmission.children[currentPerson];
 	$scope.goNext = function(isValid) {
 		if(isValid) {
 
-			if ( $state.is('child-add') ) {
-				$state.go('child-individual');
-			}
+			var currentState = $state.current.name;
 
-			if ( $state.is('child-individual')) {
-				console.log('here');
-				currentPerson++;
-				if ( $scope.currentPersonInfo ) {
-					console.log('second');
-					$state.go('child-individual');
-				}
-				
+			switch(currentState) {
+				case 'programs':
+					$state.go('child-add');
+					break;
+				case 'child-add': 
+					$state.go('child-individual', { idx: 0 });
+					$scope.currentPersonInfo = $scope.newSubmission.children[0];
+					break;
+				case 'child-individual':
+					$scope.currentPerson = parseInt($stateParams.idx);
+					$scope.currentPerson++;
+					if ( $scope.newSubmission.children[$scope.currentPerson] ) {
+						$state.go('child-individual', { idx: $scope.currentPerson });
+						$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+					} else{
+						$state.go('programs');
+					}
+					break;
 			}
 
 
 			
 
+
 			$scope.formSubmitted = false;
-
-
-
-
-
 
 		} else {
 			return;

@@ -6,6 +6,16 @@ form button[type="submit"], form input[type="submit"] {
 	margin: 0;
 }
 
+form input[type="radio"] + label {
+	width: 80px;
+	display: inline-block;
+	margin-top: 0;
+}
+
+form .compact > .usa-width-one-half {
+	height: 50px;
+}
+
 .user-table {
 	margin-bottom: 0;
 	td {
@@ -65,7 +75,6 @@ form button[type="submit"], form input[type="submit"] {
 	}
 	input {
 		margin: 2px;
-		transition: all .1s;
 	}
 	input.input-error {
 		border: 3px solid $color-secondary;
@@ -73,16 +82,52 @@ form button[type="submit"], form input[type="submit"] {
 	}
 }
 
-.usa-input-error.stand-alone {
-	right: 0;
-	transition: all .5s;
-	&.ng-show {
-		opacity: 1;
-		height: 111px;
-
+.usa-grid-full, .usa-grid-one-whole {
+	&.ng-animate {
+		height: 73px;
+		overflow: hidden;
+		transition: height .3s, opacity .15s;
 	}
-	&.ng-hide {
-		opacity: 0;
+	&.ng-enter {
 		height: 0;
+		opacity: 0;
+		transition: height .3s, opacity .3s .15s;
+	}
+	&.ng-enter-active {
+		height: 73px;
+		opacity: 1;
+	}
+	&.ng-leave-active {
+		height: 0;
+		opacity: 0;
+	}
+}
+
+
+
+.usa-grid, .usa-grid-full {
+	> .usa-width-one-half {
+		min-height: 73px;
+	}
+	.income-input {
+		height: 73px;
+		label {
+			margin-top: 0;
+		}
+		.dollar-sign {
+			position: relative;
+			&:before {
+				content: "$";
+				position: absolute;
+				top: 11px;
+				left: 8px;
+			}
+		}
+		input[type="number"] {
+			padding-left: 20px;
+		}
+	}
+	label {
+		margin: 0;
 	}
 }
