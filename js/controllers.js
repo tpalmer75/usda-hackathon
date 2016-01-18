@@ -20,6 +20,8 @@ angular.module('lunch.controllers', [])
 	$scope.currentPerson = $stateParams.idx;
 	// when going through children and adults
 	$scope.currentPersonInfo = {};
+	// to track the route history
+	$scope.previousState = '';
 
 
 	$scope.resetData = function() {
@@ -31,31 +33,66 @@ angular.module('lunch.controllers', [])
 					lastName: '',
 				}
 			],
-			adults: []
+			adults: [
+				{
+					firstName: '',
+					middleInitial: '',
+					lastName: ''
+				}]
 		};
 	};
 
-	$scope.addChild = function() {
+	$scope.addPerson = function(type) {
 
-		var newChild = {
+		var newPerson = {
 			firstName: '',
 			middleInitial: '',
 			lastName: '',
 		};
 
-		$scope.newSubmission.children.push(newChild);
+		switch(type) {
+			case 'child':
+				$scope.newSubmission.children.push(newPerson);
+				break;
+			case 'adult':
+				$scope.newSubmission.adults.push(newPerson);
+				break;
+		}
+		
 	};
 
 	$scope.goBack = function() {
-		window.history.back();
+		//window.history.back();
+		switch($scope.previousState) {
+			case 'programs':
+				$state.go('programs');
+				$scope.previousState = 'home';
+				break;
+			case 'child-add':
+				$state.go('child-add');
+				$scope.previousState = 'programs';
+				break;
+			case 'child-individual':
+				$scope.currentPerson = parseInt($stateParams.idx);
+				$scope.currentPerson--;
+				if( $scope.newSubmission.children[$scope.currentPerson] ) {
+					$state.go('child-individual', {idx: $scope.currentPerson });
+					$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+					$scope.previousState = 'child-individual';
+				} else {
+					$state.go('child-add');
+					$scope.previousState = 'programs';
+				}
+				break;
+		}
 	};
 
 	$scope.goNext = function(isValid) {
 		if(isValid) {
 
-			var currentState = $state.current.name;
+			$scope.previousState = $state.current.name;
 
-			switch(currentState) {
+			switch($scope.previousState) {
 				case 'programs':
 					$state.go('child-add');
 					break;
@@ -69,15 +106,15 @@ angular.module('lunch.controllers', [])
 					if ( $scope.newSubmission.children[$scope.currentPerson] ) {
 						$state.go('child-individual', { idx: $scope.currentPerson });
 						$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
-					} else{
-						$state.go('programs');
+					} else {
+						$state.go('adult-add');
 					}
 					break;
+				case 'adult-add':
+					$state.go('adult-individual', {idx: 0 });
+					$scope.currentPersonInfo = $scope.newSubmission.adults[0];
+					break;
 			}
-
-
-			
-
 
 			$scope.formSubmitted = false;
 

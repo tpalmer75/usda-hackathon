@@ -2,18 +2,14 @@ body form {
 	max-width: none;
 }
 
-form button[type="submit"], form input[type="submit"] {
-	margin: 0;
-}
+// form button[type="submit"], form input[type="submit"] {
+// 	margin: 0;
+// }
 
 form input[type="radio"] + label {
 	width: 80px;
 	display: inline-block;
 	margin-top: 0;
-}
-
-form .compact > .usa-width-one-half {
-	height: 50px;
 }
 
 .user-table {
@@ -46,6 +42,7 @@ form .compact > .usa-width-one-half {
 		transition: all .2s;
 		&.ng-enter {
 			opacity: 0;
+			display: none;
 			transition: opacity .2s
 		}
 		&.ng-enter-active {
@@ -57,6 +54,7 @@ form .compact > .usa-width-one-half {
 		}
 		&.ng-leave-active {
 			opacity: 0;
+			display: none;
 		}
 		&:nth-of-type(2) {
 			.delete {
@@ -82,52 +80,96 @@ form .compact > .usa-width-one-half {
 	}
 }
 
-.usa-grid-full, .usa-grid-one-whole {
+
+
+
+.usa-grid, .usa-grid-full, .usa-grid-one-whole {
+
+	//ng-animate
 	&.ng-animate {
-		height: 73px;
-		overflow: hidden;
-		transition: height .3s, opacity .15s;
+		transition: height .3s, opacity .15s, margin .3s;
 	}
 	&.ng-enter {
 		height: 0;
 		opacity: 0;
-		transition: height .3s, opacity .3s .15s;
+		margin: 0;
+		overflow: hidden;
+		//transition: height .5s, opacity .3s .15s;
 	}
 	&.ng-enter-active {
-		height: 73px;
+		height: 65px;
 		opacity: 1;
+		overflow: hidden;
 	}
+
+	&.ng-leave {
+		height: 65px;
+		opacity: 1;
+		overflow: hidden;
+	}
+
 	&.ng-leave-active {
 		height: 0;
 		opacity: 0;
+		margin: 0;
 	}
-}
 
 
 
-.usa-grid, .usa-grid-full {
-	> .usa-width-one-half {
-		min-height: 73px;
-	}
-	.income-input {
-		height: 73px;
-		label {
-			margin-top: 0;
+	&.compact {
+		//height: 54px;
+		@media screen and (max-width: 600px) {
+			height: auto;
 		}
-		.dollar-sign {
-			position: relative;
-			&:before {
-				content: "$";
-				position: absolute;
-				top: 11px;
-				left: 8px;
-			}
+	}
+
+	> .usa-width-one-half {
+		min-height: 1px; // to have an empty left column
+	}
+	label {
+		margin: 0;
+	}
+
+	> .usa-width-one-half:nth-of-type(2) {
+		padding-left: 10px; // for two column inputs
+	}
+	.dollar-sign {
+		position: relative;
+		&:before {
+			content: "$";
+			position: absolute;
+			top: 11px;
+			left: 8px;
 		}
 		input[type="number"] {
 			padding-left: 20px;
 		}
 	}
-	label {
-		margin: 0;
-	}
 }
+
+
+
+// .usa-grid, .usa-grid-full {
+	
+// 	.income-input {
+// 		//height: 81px;
+// 		label {
+// 			margin-top: 0;
+// 		}
+		// .dollar-sign {
+		// 	position: relative;
+		// 	&:before {
+		// 		content: "$";
+		// 		position: absolute;
+		// 		top: 11px;
+		// 		left: 8px;
+		// 	}
+		// }
+		// input[type="number"] {
+		// 	padding-left: 20px;
+		// }
+// 	}
+// 	label {
+// 		margin: 0;
+// 	}
+// }

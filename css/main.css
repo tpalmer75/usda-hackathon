@@ -2289,16 +2289,10 @@ fieldset {
 body form {
   max-width: none; }
 
-form button[type="submit"], form input[type="submit"] {
-  margin: 0; }
-
 form input[type="radio"] + label {
   width: 80px;
   display: inline-block;
   margin-top: 0; }
-
-form .compact > .usa-width-one-half {
-  height: 50px; }
 
 .user-table {
   margin-bottom: 0; }
@@ -2324,6 +2318,7 @@ form .compact > .usa-width-one-half {
     transition: all .2s; }
     .user-table tr.ng-enter {
       opacity: 0;
+      display: none;
       transition: opacity 0.2s; }
     .user-table tr.ng-enter-active {
       opacity: 1; }
@@ -2331,7 +2326,8 @@ form .compact > .usa-width-one-half {
       opacity: 1;
       transition: opacity .2s; }
     .user-table tr.ng-leave-active {
-      opacity: 0; }
+      opacity: 0;
+      display: none; }
     .user-table tr:nth-of-type(2) .delete {
       visibility: hidden; }
     .user-table tr.usa-input-error {
@@ -2347,66 +2343,62 @@ form .compact > .usa-width-one-half {
     border: 3px solid #e31c3d;
     margin: 0; }
 
-.usa-grid-full.ng-animate, .usa-grid-one-whole.ng-animate {
-  height: 73px;
-  overflow: hidden;
-  transition: height .3s, opacity .15s; }
-.usa-grid-full.ng-enter, .usa-grid-one-whole.ng-enter {
+.usa-grid.ng-animate, .usa-grid-full.ng-animate, .usa-grid-one-whole.ng-animate {
+  transition: height .3s, opacity .15s, margin .3s; }
+.usa-grid.ng-enter, .usa-grid-full.ng-enter, .usa-grid-one-whole.ng-enter {
   height: 0;
   opacity: 0;
-  transition: height .3s, opacity .3s .15s; }
-.usa-grid-full.ng-enter-active, .usa-grid-one-whole.ng-enter-active {
-  height: 73px;
-  opacity: 1; }
-.usa-grid-full.ng-leave-active, .usa-grid-one-whole.ng-leave-active {
+  margin: 0;
+  overflow: hidden; }
+.usa-grid.ng-enter-active, .usa-grid-full.ng-enter-active, .usa-grid-one-whole.ng-enter-active {
+  height: 65px;
+  opacity: 1;
+  overflow: hidden; }
+.usa-grid.ng-leave, .usa-grid-full.ng-leave, .usa-grid-one-whole.ng-leave {
+  height: 65px;
+  opacity: 1;
+  overflow: hidden; }
+.usa-grid.ng-leave-active, .usa-grid-full.ng-leave-active, .usa-grid-one-whole.ng-leave-active {
   height: 0;
-  opacity: 0; }
-
-.usa-grid > .usa-width-one-half, .usa-grid-full > .usa-width-one-half {
-  min-height: 73px; }
-.usa-grid .income-input, .usa-grid-full .income-input {
-  height: 73px; }
-  .usa-grid .income-input label, .usa-grid-full .income-input label {
-    margin-top: 0; }
-  .usa-grid .income-input .dollar-sign, .usa-grid-full .income-input .dollar-sign {
-    position: relative; }
-    .usa-grid .income-input .dollar-sign:before, .usa-grid-full .income-input .dollar-sign:before {
-      content: "$";
-      position: absolute;
-      top: 11px;
-      left: 8px; }
-  .usa-grid .income-input input[type="number"], .usa-grid-full .income-input input[type="number"] {
-    padding-left: 20px; }
-.usa-grid label, .usa-grid-full label {
+  opacity: 0;
   margin: 0; }
+@media screen and (max-width: 600px) {
+  .usa-grid.compact, .usa-grid-full.compact, .usa-grid-one-whole.compact {
+    height: auto; } }
+.usa-grid > .usa-width-one-half, .usa-grid-full > .usa-width-one-half, .usa-grid-one-whole > .usa-width-one-half {
+  min-height: 1px; }
+.usa-grid label, .usa-grid-full label, .usa-grid-one-whole label {
+  margin: 0; }
+.usa-grid > .usa-width-one-half:nth-of-type(2), .usa-grid-full > .usa-width-one-half:nth-of-type(2), .usa-grid-one-whole > .usa-width-one-half:nth-of-type(2) {
+  padding-left: 10px; }
+.usa-grid .dollar-sign, .usa-grid-full .dollar-sign, .usa-grid-one-whole .dollar-sign {
+  position: relative; }
+  .usa-grid .dollar-sign:before, .usa-grid-full .dollar-sign:before, .usa-grid-one-whole .dollar-sign:before {
+    content: "$";
+    position: absolute;
+    top: 11px;
+    left: 8px; }
+  .usa-grid .dollar-sign input[type="number"], .usa-grid-full .dollar-sign input[type="number"], .usa-grid-one-whole .dollar-sign input[type="number"] {
+    padding-left: 20px; }
 
 .user-table tr.usa-input-error {
   border-left: 3px solid #cd2026; }
 .user-table input.input-error {
-  border: 3px solid #e31c3d;
+  border: 3px solid #cd2026;
   margin: 0; }
 
+.error-wrapper {
+  margin: 0;
+  transition: margin .5s; }
+
 .usa-input-error {
-  margin-top: 0;
-  transition: padding-top .5s, padding-bottom .5s; }
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: padding-top .5s, padding-bottom .5s, margin .5s; }
 
-.input-error-boolean {
-  border-left: 4px solid #cd2026;
-  margin-left: -30px;
-  margin-right: -27px; }
-  .input-error-boolean > .usa-width-one-half:first-of-type {
-    padding-left: 26px; }
-  .input-error-boolean input[type="radio"] + label::before {
-    box-shadow: 0 0 0 2px white, 0 0 0 5px #e31c3d; }
-
-.error-income {
-  border-left: 4px solid #cd2026;
-  margin-left: -30px; }
-  .error-income > .usa-width-one-half:nth-of-type(2) {
-    padding-left: 10px; }
-
-.input-error-income input[type="number"], .input-error-income input[type="text"], .input-error-income select {
-  border: 3px solid #cd2026; }
+.usa-input-error-message {
+  display: inline-block;
+  width: 100%; }
 
 /* ------ BEGIN CUSTOM CODE ------ */
 body {
