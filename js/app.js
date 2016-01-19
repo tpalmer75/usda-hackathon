@@ -36,6 +36,10 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('adult-individual', {
             url: '/adults/:idx',
             templateUrl : 'templates/adult-individual.html'
+        })
+        .state('household', {
+            url: '/household',
+            templateUrl : 'templates/household.html'
         });
 
 });

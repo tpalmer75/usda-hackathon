@@ -1,0 +1,40 @@
+<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>Now let's take a look at the whole house.</h3>
+            <div class="hr"></div>
+        </div>
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.household.$invalid && formSubmitted }">
+            <div class="usa-grid-full">
+                <div class="usa-width-one-half">
+                    <p>How many people live in the house?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <div class="usa-grid-full">
+                        <div class="usa-width-one-half">
+                            <label>Case number</label>
+                            <div>
+                                <input type="number" ng-model="newSubmission.household" name="household" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs">
+            <p class="usa-input-error-message">You're missing some information. <span ng-if="!newSubmission.programs">This question is </span><span ng-if="newSubmission.programs">These questions are</span> required.</p>
+        </div>
+        <div class="usa-grid-full" ng-if="newSubmission.household && userForm.household.$touched && (newSubmission.household != (newSubmission.children.length + newSubmission.adults.length))">
+            <div class="usa-alert usa-alert-warning">
+            <div class="usa-alert-body">
+              <h3 class="usa-alert-heading">Oops! Not by our count...</h3>
+              <p class="usa-alert-text">You said {{ newSubmission.household }} <span ng-if="newSubmission.household > 1">people live</span><span ng-if="newSubmission.household == 1">person lives</span> in the house but you only listed {{ newSubmission.children.length + newSubmission.adults.length }}. Please review the children and the adults and try again.</p>
+            </div>
+        </div>
+  </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>
