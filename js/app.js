@@ -40,6 +40,50 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('household', {
             url: '/household',
             templateUrl : 'templates/household.html'
+        })
+        .state('contact', {
+            url: '/contact',
+            templateUrl : 'templates/contact.html'
         });
 
+})
+
+
+.directive("formOnChange", function(){
+  return {
+    require: "form",
+    link: function(scope){
+
+    scope.$watch("newSubmission", function(){
+        scope.formSubmitted = false;
+        }, true);
+    }
+  };
+})
+
+.animation('.ng-slide-down', function() {
+  return {
+    enter: function(element) {
+      element.hide().slideDown(300).addClass('showing').removeClass('hiding');
+      //return function(cancelled) {};
+    },
+    leave: function(element) { 
+      element.slideUp(300).removeClass('showing').addClass('hiding');
+    },
+  };
 });
+
+
+// .animation('.ng-slide-down', function() {
+//     return {
+//         beforeAddClass: function(element, className, done) {
+//             if(className === 'ng-leave') {
+//                 element.slideUp(done); 
+//             } else if (className === 'ng-enter') {
+//                 element.hide().slideDown(done);
+//             }
+//         }
+//     };
+// });
+
+

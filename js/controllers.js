@@ -2,7 +2,7 @@
 
 angular.module('lunch.controllers', [])
 
-.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams) {
+.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams, $filter) {
 	
 	//var data = Submissions.all();
 
@@ -21,17 +21,9 @@ angular.module('lunch.controllers', [])
 	// when going through children and adults
 	$scope.currentPersonInfo = {};
 	// to track the route history
-	$scope.previousState = '';
-
-	$rootScope.$on('$stateChangeSuccess', function(toState, toParams) {
-		$scope.currentPerson = $stateParams.idx;
-		var incoming = toParams.name;
-		if (incoming === 'adult-individual') {
-			$scope.currentPersonInfo = $scope.newSubmission.adults[$scope.currentPerson];
-		} else if (incoming === 'child-individual') {
-			$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
-		}
-	});
+	//$scope.previousState = '';
+	var currentDate = new Date();
+	$scope.filteredDate = $filter('date')(currentDate, "MMM dd, y");
 
 
 	$scope.resetData = function() {
@@ -68,9 +60,9 @@ angular.module('lunch.controllers', [])
 				$scope.newSubmission.adults.push(newPerson);
 				break;
 		}
-		
 	};
 
+	// to move back in the app
 	$scope.goBack = function() {
 		window.history.back();
 		// switch($scope.previousState) {
@@ -125,7 +117,18 @@ angular.module('lunch.controllers', [])
 		// 		break;
 		// }
 	};
+	// used for managing the data for individuals on state change
+	$rootScope.$on('$stateChangeSuccess', function(toState, toParams) {
+		$scope.currentPerson = $stateParams.idx;
+		var incoming = toParams.name;
+		if (incoming === 'adult-individual') {
+			$scope.currentPersonInfo = $scope.newSubmission.adults[$scope.currentPerson];
+		} else if (incoming === 'child-individual') {
+			$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+		}
+	});
 
+	// to move forward in the app
 	$scope.goNext = function(isValid) {
 		if(isValid) {
 
@@ -140,7 +143,6 @@ angular.module('lunch.controllers', [])
 					$scope.currentPersonInfo = $scope.newSubmission.children[0];
 					break;
 				case 'child-individual':
-					$scope.currentPerson = parseInt($stateParams.idx);
 					$scope.currentPerson++;
 					if ( $scope.newSubmission.children[$scope.currentPerson] ) {
 						$state.go('child-individual', { idx: $scope.currentPerson });
@@ -158,7 +160,6 @@ angular.module('lunch.controllers', [])
 					$scope.currentPersonInfo = $scope.newSubmission.adults[0];
 					break;
 				case 'adult-individual':
-					$scope.currentPerson = parseInt($stateParams.idx);
 					$scope.currentPerson++;
 					if ( $scope.newSubmission.adults[$scope.currentPerson] ) {
 						$state.go('adult-individual', { idx: $scope.currentPerson });

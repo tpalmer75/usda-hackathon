@@ -1,0 +1,53 @@
+<form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>Alright, let's wrap this up.</h3>
+            <div class="hr"></div>
+        </div>
+        <div class="flex contact-form">
+            <div class="flex-item size-4">
+                <label for="address">Street Address (if&nbsp;available)</label>
+                <input type="text" ng-model="newSubmission.contact.address" name="address" id="address">
+            </div>
+            <div class="flex-item size-1">
+                <label for="apt">Apt #</label>
+                <input type="text" ng-model="newSubmission.contact.apt" name="apt" id="apt">
+            </div>
+            <div class="flex-item size-3">
+                <label for="city">City</label>
+                <input type="text" ng-model="newSubmission.contact.city" name="city" id="city" required>
+            </div>
+            <div class="flex-item size-1">
+                <label for="state">State</label>
+                <input type="text" ng-model="newSubmission.contact.state" name="state" id="state" required>
+            </div>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.zip.$invalid }">
+                <label for="zip">Zip</label>
+                <input type="text" ng-model="newSubmission.contact.zip" name="zip" id="zip" ng-length="5" required>
+            </div>
+            <div class="flex-item size-3">
+                <label for="phone">Daytime Phone</label>
+                <input type="tel" ng-model="newSubmission.contact.phone" name="phone" id="phone" required>
+            </div>
+            <div class="flex-item size-3">
+                <label for="email">Email</label>
+                <input type="email" ng-model="newSubmission.contact.email" name="email" id="email" required>
+            </div>
+            <div class="flex-item size-3">
+                <label for="Signature">Signature (Printed&nbsp;Name)</label>
+                <input type="tel" ng-model="newSubmission.contact.Signature" name="Signature" id="Signature" required>
+            </div>
+            <div class="flex-item size-3">
+                <label for="date">Date {{ currentDate }} </label>
+                <input ng-model="filteredDate" name="date" disabled>
+            </div>
+        </div>
+        <div class="usa-input-error usa-grid-full" ng-if="formSubmitted && userForm.$invalid">
+            <p class="usa-input-error-message">You're missing some information. We marked the missing info in red.</p>
+        </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>
