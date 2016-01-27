@@ -21,9 +21,6 @@ input:disabled {
 
 .usa-grid, .usa-grid-full, .usa-grid-one-whole {
 
-	// > .usa-width-one-half {
-	// 	min-height: 1px; // to have an empty left column
-	// }
 	label {
 		margin: 0;
 	}
@@ -72,6 +69,9 @@ input:disabled {
 	}
   	.usa-grid-full {
   		margin: 0;
+  	}
+  	span {
+  		color: $color-secondary;
   	}
   	.flex-item {
   		min-width: 60px;

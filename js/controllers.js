@@ -41,7 +41,8 @@ angular.module('lunch.controllers', [])
 					middleInitial: '',
 					lastName: ''
 				}
-			]
+			],
+			date: $scope.filteredDate
 		};
 	};
 
@@ -144,13 +145,13 @@ angular.module('lunch.controllers', [])
 					break;
 				case 'child-add': 
 					$state.go('child-individual', { idx: 0 });
-					$scope.currentPersonInfo = $scope.newSubmission.children[0];
+					//$scope.currentPersonInfo = $scope.newSubmission.children[0];
 					break;
 				case 'child-individual':
 					$scope.currentPerson++;
 					if ( $scope.newSubmission.children[$scope.currentPerson] ) {
 						$state.go('child-individual', { idx: $scope.currentPerson });
-						$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+						//$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
 					} else {
 						if ( $scope.newSubmission.programs ) {
 							$state.go('contact');
@@ -161,13 +162,13 @@ angular.module('lunch.controllers', [])
 					break;
 				case 'adult-add':
 					$state.go('adult-individual', {idx: 0 });
-					$scope.currentPersonInfo = $scope.newSubmission.adults[0];
+					//$scope.currentPersonInfo = $scope.newSubmission.adults[0];
 					break;
 				case 'adult-individual':
 					$scope.currentPerson++;
 					if ( $scope.newSubmission.adults[$scope.currentPerson] ) {
 						$state.go('adult-individual', { idx: $scope.currentPerson });
-						$scope.currentPersonInfo = $scope.newSubmission.adults[$scope.currentPerson];
+						//$scope.currentPersonInfo = $scope.newSubmission.adults[$scope.currentPerson];
 					} else {
 						$state.go('household');
 					}
@@ -179,6 +180,9 @@ angular.module('lunch.controllers', [])
 					} else {
 						return;
 					}
+					break;
+				case 'contact':
+					$state.go('ethnicity');
 					break;
 			}
 

@@ -44,6 +44,10 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('contact', {
             url: '/contact',
             templateUrl : 'templates/contact.html'
+        })
+        .state('ethnicity', {
+            url: '/ethnicity',
+            templateUrl : 'templates/ethnicity.html'
         });
 
 })

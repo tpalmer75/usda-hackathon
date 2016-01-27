@@ -13,33 +13,33 @@
                 <label for="apt">Apt #</label>
                 <input type="text" ng-model="newSubmission.contact.apt" name="apt" id="apt">
             </div>
-            <div class="flex-item size-3">
-                <label for="city">City</label>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.city.$invalid && formSubmitted }">
+                <label for="city">City<span>*</span></label>
                 <input type="text" ng-model="newSubmission.contact.city" name="city" id="city" required>
             </div>
-            <div class="flex-item size-1">
-                <label for="state">State</label>
-                <input type="text" ng-model="newSubmission.contact.state" name="state" id="state" required>
+            <div class="flex-item size-1" ng-class="{ 'input-error' : userForm.state.$invalid && formSubmitted }">
+                <label for="state">State<span>*</span></label>
+                <input type="text" ng-minlength="2" ng-model="newSubmission.contact.state" name="state" id="state" required>
             </div>
-            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.zip.$invalid }">
-                <label for="zip">Zip</label>
-                <input type="text" ng-model="newSubmission.contact.zip" name="zip" id="zip" ng-length="5" required>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.zip.$invalid && formSubmitted }">
+                <label for="zip">Zip<span>*</span></label>
+                <input type="number" ng-model="newSubmission.contact.zip" name="zip" id="zip" ng-length="5" required>
             </div>
-            <div class="flex-item size-3">
-                <label for="phone">Daytime Phone</label>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.phone.$invalid && formSubmitted }">
+                <label for="phone">Daytime Phone<span>*</span></label>
                 <input type="tel" ng-model="newSubmission.contact.phone" name="phone" id="phone" required>
             </div>
-            <div class="flex-item size-3">
-                <label for="email">Email</label>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.email.$invalid && formSubmitted }">
+                <label for="email">Email<span>*</span></label>
                 <input type="email" ng-model="newSubmission.contact.email" name="email" id="email" required>
             </div>
-            <div class="flex-item size-3">
-                <label for="Signature">Signature (Printed&nbsp;Name)</label>
-                <input type="tel" ng-model="newSubmission.contact.Signature" name="Signature" id="Signature" required>
+            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
+                <label for="Signature">Signature (Printed&nbsp;Name)<span>*</span></label>
+                <input type="text" ng-model="newSubmission.contact.signature" name="signature" id="signature" required>
             </div>
             <div class="flex-item size-3">
-                <label for="date">Date {{ currentDate }} </label>
-                <input ng-model="filteredDate" name="date" disabled>
+                <label for="date">Date {{ currentDate }} <span>*</span></label>
+                <input ng-model="newSubmission.date" name="date" disabled>
             </div>
         </div>
         <p style="font-size: 14px; color: #454341;">The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds; School officials may verify the information on the application; and deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.</p>
