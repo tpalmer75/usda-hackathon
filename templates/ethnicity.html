@@ -1,0 +1,42 @@
+<form name="userForm" form-on-change="formSubmitted = false" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>You're done! (But we'd be grateful if you answered this)</h3>
+            <div class="hr"></div>
+        </div>
+        <p>This section is completely optional, and does not effect your child’s eligibility. It is important, however, and helps us be sure we are meeting the needs of our community.</p>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-half">
+                <h4>Ethnicity</h4>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <legend class="usa-sr-only">Children's ethnicity</legend>
+                    <ul class="usa-unstyled-list">
+                        <li>
+                            <input id="hispanic" type="checkbox" name="hispanic" ng-model="newSubmission.latino">
+                            <label for="hispanic">Hispanic/Latino</label>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div class="usa-width-one-half">
+                <h4>Race (Check one or more)</h4>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <legend class="usa-sr-only">Children's ethnicity</legend>
+                    <ul class="usa-unstyled-list">
+                        <li>
+                            <input id="indian" type="checkbox" name="indian" ng-model="newSubmission.indian">
+                            <label for="indian">American Indian or Alaskan Native</label>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs || userForm.subForm.$invalid && formSubmitted">
+            <p class="usa-input-error-message">You're missing some information. <span ng-if="!newSubmission.programs">This question is </span><span ng-if="newSubmission.programs">These questions are</span> required.</p>
+        </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Done</button>
+        <button type="button" class="usa-button-secondary">No, thanks</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>

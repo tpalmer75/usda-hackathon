@@ -76,7 +76,7 @@
                         	<input type="number" ng-model="currentPersonInfo.incomeAmount" name="incomeAmount" required>
                     	</div>
                     </div>
-                    <div class="usa-width-one-half" ng-class="{ 'input-error-income' : subForm.incomeFrequency.$invalid && subForm.incomeFrequency.$touched || userForm.subForm.$invalid && formSubmitted }">
+                    <div class="usa-width-one-half">
                         <label for="frequency">How often?</label>
                         <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.incomeFrequency" required>
                             <option value="52">Weekly</option>
