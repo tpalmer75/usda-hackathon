@@ -2330,7 +2330,7 @@ input:disabled {
   .usa-grid .ssn input[type="number"], .usa-grid-full .ssn input[type="number"], .usa-grid-one-whole .ssn input[type="number"] {
     padding-left: 62px; }
 
-.flex {
+.contact-form {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
@@ -2342,32 +2342,33 @@ input:disabled {
   align-items: flex-end;
   margin: 0 -10px; }
   @media screen and (max-width: 599px) {
-    .flex {
+    .contact-form {
       margin-right: 5px; } }
-  .flex.user-table {
-    max-width: initial; }
-  .flex .usa-grid-full {
+  .contact-form .usa-grid-full {
     margin: 0; }
-  .flex .flex-item {
+  .contact-form .flex-item {
     min-width: 60px;
     padding: 0 10px;
     width: 200px; }
-    .flex .flex-item input {
+    @media screen and (max-width: 480px) {
+      .contact-form .flex-item {
+        padding: 0 5px; } }
+    .contact-form .flex-item input {
       margin: 2px; }
-    .flex .flex-item.icon {
+    .contact-form .flex-item.icon {
       width: 25px;
       flex: 0 0 5%;
       font-size: 24px;
       min-width: initial; }
-    .flex .flex-item.size-1 {
+    .contact-form .flex-item.size-1 {
       flex: 1 0 20%; }
-    .flex .flex-item.size-2 {
+    .contact-form .flex-item.size-2 {
       flex: 3 0 25%; }
-    .flex .flex-item.size-3 {
+    .contact-form .flex-item.size-3 {
       flex: 2 0 40%; }
-    .flex .flex-item.size-4 {
+    .contact-form .flex-item.size-4 {
       flex: 4 0 60%; }
-  .flex label {
+  .contact-form label {
     margin-top: 1.5rem; }
 
 .user-table {
@@ -2382,6 +2383,11 @@ input:disabled {
   align-items: flex-end;
   padding: 0 25px;
   position: relative; }
+  @media screen and (max-width: 480px) {
+    .user-table {
+      border-bottom: 1px solid #aeb0b5;
+      padding-bottom: 20px;
+      margin-bottom: 20px; } }
   .user-table .flex-item {
     padding: 0 5px; }
     .user-table .flex-item label {
@@ -2435,6 +2441,14 @@ input:disabled {
     opacity: 1; }
   .ng-slide-down.hiding {
     opacity: 0; }
+
+.usa-accordion-bordered button {
+  cursor: initial;
+  background-image: none; }
+  .usa-accordion-bordered button:hover {
+    background: #f1f1f1; }
+  .usa-accordion-bordered button:focus {
+    box-shadow: none; }
 
 .user-table tr.usa-input-error {
   border-left: 3px solid #cd2026; }

@@ -8,7 +8,7 @@
 			<div class="flex-item size-mi">MI</div>
 			<div class="flex-item last-name">Last name</div>
 		</div>
-		<div class="user-table ng-slide-down" ng-form="subForm" ng-repeat="adult in newSubmission.adults">
+		<div class="user-table ng-slide-down" ng-form="subForm" ng-repeat="adult in newSubmission.adults" ng-class="{'no-delete':$first}">
 			<div class="user-icon"><i class="fa fa-user"></i></div>
 			<div class="flex-item first-name">
 				<label for="firstName">First name</label>
@@ -34,7 +34,7 @@
 				ng-model="adult.lastName"
 				required></td>
 			</div>
-			<div class="delete-icon" ng-click="newSubmission.adultren.splice($index, 1);"><i class="fa fa-close"></i></div>
+			<div class="delete-icon" ng-click="newSubmission.adults.splice($index, 1);"><i class="fa fa-close"></i></div>
 		</div>
 		<div class="usa-grid-full add-button" ng-click="addPerson('adult');"><i class="fa fa-plus-circle"></i> Add another adult
 		</div>

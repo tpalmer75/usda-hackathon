@@ -40,7 +40,8 @@ angular.module('lunch.controllers', [])
 					firstName: '',
 					middleInitial: '',
 					lastName: ''
-				}]
+				}
+			]
 		};
 	};
 
@@ -135,6 +136,9 @@ angular.module('lunch.controllers', [])
 			$scope.previousState = $state.current.name;
 
 			switch($scope.previousState) {
+				case 'legal':
+					$state.go('programs');
+					break;
 				case 'programs':
 					$state.go('child-add');
 					break;
