@@ -2,9 +2,9 @@ body form {
 	max-width: none;
 }
 
-// form button[type="submit"], form input[type="submit"] {
-// 	margin: 0;
-// }
+form button[type="submit"], form input[type="submit"] {
+	margin: 0;
+}
 
 form input[type="radio"] + label {
 	width: 80px;
@@ -12,126 +12,20 @@ form input[type="radio"] + label {
 	margin-top: 0;
 }
 
-.user-table {
-	margin-bottom: 0;
-	td {
-		padding: 2px 5px;
-		border: 0;
-		&.middle-initial {
-			width: 60px;
-		}
-	}
-	.table-icon {
-		font-size: 24px;
-		color: $color-gray-light;
-		width: 25px;
-		padding-left: 5px;
-	}
-	.add-user {
-		color: $color-green;
-		cursor: pointer;
-		.table-icon {
-			color: $color-green;
-		}
-		td {
-			padding-top: 10px;
-		}
-	}
-	tr {
-		border-left: 3px solid transparent;
-		transition: all .2s;
-		&.ng-enter {
-			opacity: 0;
-			display: none;
-			transition: opacity .2s
-		}
-		&.ng-enter-active {
-			opacity: 1;
-		}
-		&.ng-leave {
-			opacity: 1;
-			transition: opacity .2s;
-		}
-		&.ng-leave-active {
-			opacity: 0;
-			display: none;
-		}
-		&:nth-of-type(2) {
-			.delete {
-				visibility: hidden;
-			}
-		}
-		&.usa-input-error {
-			border-left: 3px solid #cd2026;
-		}
-	}
-	.delete {
-		color: $color-secondary;
-		font-size: 24px;
-		width: 28px;
-		cursor: pointer;
-	}
-	input {
-		margin: 2px;
-	}
-	input.input-error {
-		border: 3px solid $color-secondary;
-		margin: 0;
-	}
+input:disabled {
+	background: $color-gray-lightest;
+	border: 1px solid $color-gray-light;
+	color: $color-gray;
 }
-
-
 
 
 .usa-grid, .usa-grid-full, .usa-grid-one-whole {
 
-	//ng-animate
-	&.ng-animate {
-		transition: height .3s, opacity .15s, margin .3s;
-	}
-	&.ng-enter {
-		height: 0;
-		opacity: 0;
-		margin: 0;
-		overflow: hidden;
-		//transition: height .5s, opacity .3s .15s;
-	}
-	&.ng-enter-active {
-		height: 65px;
-		opacity: 1;
-		overflow: hidden;
-	}
-
-	&.ng-leave {
-		height: 65px;
-		opacity: 1;
-		overflow: hidden;
-	}
-
-	&.ng-leave-active {
-		height: 0;
-		opacity: 0;
-		margin: 0;
-	}
-
-
-
-	&.compact {
-		//height: 54px;
-		@media screen and (max-width: 600px) {
-			height: auto;
-		}
-	}
-
-	> .usa-width-one-half {
-		min-height: 1px; // to have an empty left column
-	}
+	// > .usa-width-one-half {
+	// 	min-height: 1px; // to have an empty left column
+	// }
 	label {
 		margin: 0;
-	}
-
-	> .usa-width-one-half:nth-of-type(2) {
-		padding-left: 10px; // for two column inputs
 	}
 	.dollar-sign {
 		position: relative;
@@ -145,31 +39,174 @@ form input[type="radio"] + label {
 			padding-left: 20px;
 		}
 	}
+	.ssn {
+		position: relative;
+		&:before {
+			content: "XXX-XX-";
+			color: $color-gray-light;
+			position: absolute;
+			top: 11px;
+			left: 8px;
+		}
+		input[type="number"] {
+			padding-left: 62px;
+		}
+	}
 }
 
 
 
-// .usa-grid, .usa-grid-full {
-	
-// 	.income-input {
-// 		//height: 81px;
-// 		label {
-// 			margin-top: 0;
-// 		}
-		// .dollar-sign {
-		// 	position: relative;
-		// 	&:before {
-		// 		content: "$";
-		// 		position: absolute;
-		// 		top: 11px;
-		// 		left: 8px;
-		// 	}
-		// }
-		// input[type="number"] {
-		// 	padding-left: 20px;
-		// }
-// 	}
-// 	label {
-// 		margin: 0;
-// 	}
-// }
+.contact-form {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	max-width: 460px;
+	-webkit-align-items: flex-end;
+  	align-items: flex-end;
+	margin: 0 -10px;
+	@media screen and (max-width: 599px) {
+		margin-right: 5px;
+	}
+  	.usa-grid-full {
+  		margin: 0;
+  	}
+  	.flex-item {
+  		min-width: 60px;
+  		padding: 0 10px;
+  		width: 200px;
+  		@media screen and (max-width: 480px) {
+  			padding: 0 5px;
+  		}
+  		input {
+  			margin: 2px;
+  		}
+  		&.icon {
+  			width: 25px;
+  			flex: 0 0 5%;
+  			font-size: 24px;
+  			min-width: initial;
+  		}
+  		&.size-1 {
+  			flex: 1 0 20%;
+  		}
+  		&.size-2 {
+  			flex: 3 0 25%;
+  		}
+  		&.size-3 {
+  			flex: 2 0 40%;
+  		}
+  		&.size-4 {
+  			flex: 4 0 60%;
+  		}
+  	}
+  	label {
+  		margin-top: 1.5rem;
+  	}
+}
+
+.user-table {
+	align-items: center;
+	//margin-top: 10px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-align-items: flex-end;
+  	align-items: flex-end;
+  	padding: 0 25px;
+  	position: relative;
+  	@media screen and (max-width: 480px) {
+  		border-bottom: 1px solid $color-gray-light;
+  		padding-bottom: 20px;
+  		margin-bottom: 20px;
+  	}
+  	.flex-item {
+  		padding: 0 5px;
+  		label {
+  			display: none;
+  			@media screen and (max-width: 480px) {
+  				display: block;
+  			}
+  		}
+  	}
+	.first-name {
+		flex: 2 1 auto;
+		width: 100px;
+	}
+	.last-name {
+		flex: 2 1 auto;
+		width: 100px;
+		@media all and (max-width: 480px) {
+			width: 240px;
+		}
+	}
+	.size-mi {
+		flex: 0 0 auto;
+		width: 70px;
+	}
+	.user-icon, .delete-icon {
+		position: absolute;
+		top: 10px;
+		left: 0;
+		color: $color-gray-light;
+		font-size: 24px;
+		@media screen and (max-width: 480px) {
+			top: 30px;
+		}
+	}
+	.delete-icon {
+		right: 0;
+		left: initial;
+		color: $color-secondary;
+	}
+	&.no-delete {
+		.delete-icon {
+			display: none;
+		}
+	}
+	&.header {
+		@media screen and (max-width: 480px) {
+			display: none;
+		}
+	}
+
+}
+
+.add-button {
+	color: $color-green;
+	cursor: pointer;
+	margin-top: 10px;
+	.fa {
+		font-size: 24px;
+		margin-right: 8px;
+		vertical-align: middle;
+	}
+}
+
+.ng-slide-down {
+	transition: opacity .3s;
+	&.showing {
+		opacity: 1;
+	}
+	&.hiding {
+		opacity: 0;
+	}
+}
+
+.usa-accordion-bordered {
+	button {
+		cursor: initial;
+		background-image: none;
+		&:hover {
+			background: $color-gray-lightest;
+		}
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}

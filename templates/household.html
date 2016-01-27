@@ -1,0 +1,76 @@
+<form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>Now let's take a look at the whole house.</h3>
+            <div class="hr"></div>
+        </div>
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.household.$invalid && formSubmitted }">
+            <div class="usa-grid-full">
+                <div class="usa-width-one-half">
+                    <p>How many people live in the house?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <div class="usa-grid-full">
+                        <div class="usa-width-one-half">
+                            <label>Total</label>
+                            <div>
+                                <input type="number" ng-model="newSubmission.household" name="household" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="usa-grid-full ng-slide-down" ng-if="newSubmission.household && userForm.household.$touched && (newSubmission.household != (newSubmission.children.length + newSubmission.adults.length))">
+            <div class="usa-alert usa-alert-warning">
+                <div class="usa-alert-body">
+                  <h3 class="usa-alert-heading">Oops! Not by our count...</h3>
+                  <p class="usa-alert-text">You said {{ newSubmission.household }} <span ng-if="newSubmission.household > 1">people live</span><span ng-if="newSubmission.household == 1">person lives</span> in the house but you only listed {{ newSubmission.children.length + newSubmission.adults.length }}. Please review the children and the adults and try again.</p>
+                </div>
+            </div>
+        </div>
+        <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.programsYes.$invalid && formSubmitted }">
+            <div class="usa-grid-full">
+                
+                    <div class="usa-width-one-half">
+                        <p>Do you or someone in the house have a social security number (SSN)?</p>
+                    </div>
+                    <div class="usa-width-one-half">
+                        <p>
+                            <input type="radio" id="programsYes" name="programsYes" ng-value="true" ng-model="newSubmission.programs" required>
+                            <label for="programsYes">Yes</label>
+                            <input type="radio" id="programsNo" name="programsNo" ng-value="false" ng-model="newSubmission.programs">
+                            <label for="programsNo">No</label>
+                        </p>
+                    </div>
+                </div>
+        </div>
+        <div class="error-wrapper" 
+            ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && formSubmitted } ">
+            <div class="usa-grid-full ng-slide-down" 
+                ng-form="subForm" 
+                ng-if="newSubmission.programs">
+
+                <div class="usa-width-one-half">
+                <p>What are the last four digits of their SSN?</p>
+                </div>
+                <div class="usa-width-one-half">
+                    <label>Social security number</label>
+                    <div class="ssn">
+                        <input type="number" ng-model="newSubmission.ssn" name="ssn" ng-maxlength="4" ng-minlength="4" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted && !userForm.subForm.ssn.$invalid">
+            <p class="usa-input-error-message">You're missing some information. These questions are required.</p>
+        </div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && userForm.subForm.ssn.$invalid">
+            <p class="usa-input-error-message">You're missing some information. We need the last four digits of the SSN.</p>
+        </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>

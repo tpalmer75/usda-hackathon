@@ -1,47 +1,46 @@
-<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+<form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
 	<div class="usa-grid content">
 		<h3>Now, let’s move on to the adults.</h3>
 		<div class="hr"></div>
 		<p>This is anyone in the house that you didn’t include as a child, including yourself.</p>
-		<table class="user-table">
-			<tr>
-				<td></td>
-				<td>First name</td>
-				<td>MI</td>
-				<td>Last name</td>
-			</tr>
-			<tr ng-repeat="adult in newSubmission.adults" ng-form="subForm">
-				<td class="table-icon"><i class="fa fa-user"></i></td>
-				<td>
-					<input 
-					type="text" 
-					name="firstName" 
-					ng-class="{'input-error': subForm.firstName.$invalid && subForm.firstName.$touched || subForm.firstName.$invalid && formSubmitted}" 
-					ng-model="adult.firstName" 
-					required>
-				</td>
-				<td class="middle-initial">
-					<input type="text" 
-					name="middleInitial" 
-					ng-model="adult.middleInitial">
-				</td>
-				<td>
-					<input 
-					type="text" 
-					name="lastName" 
-					ng-class="{'input-error': subForm.lastName.$invalid && subForm.lastName.$touched || subForm.lastName.$invalid && formSubmitted}"
-					ng-model="adult.lastName"
-					required></td>
-				</td>
-				<td class="delete" ng-click="newSubmission.adults.splice($index, 1);"><i class="fa fa-close"></i></td>
-			</tr>
-			<tr class="add-user" ng-click="addPerson('adult');">
-				<td class="table-icon"><i class="fa fa-plus-circle"></i></td>
-				<td>Add another adult</td>
-			</tr>
-		</table>
+		<div class="user-table header">
+			<div class="flex-item first-name">First name</div>
+			<div class="flex-item size-mi">MI</div>
+			<div class="flex-item last-name">Last name</div>
+		</div>
+		<div class="user-table ng-slide-down" ng-form="subForm" ng-repeat="adult in newSubmission.adults" ng-class="{'no-delete':$first}">
+			<div class="user-icon"><i class="fa fa-user"></i></div>
+			<div class="flex-item first-name">
+				<label for="firstName">First name</label>
+				<input 
+				type="text" 
+				name="firstName" 
+				ng-class="{'input-error': subForm.firstName.$invalid && subForm.firstName.$touched || subForm.firstName.$invalid && formSubmitted}" 
+				ng-model="adult.firstName" 
+				required>
+			</div>
+			<div class="flex-item size-mi">
+				<label for="middleInitial">MI</label>
+				<input type="text" 
+				name="middleInitial" 
+				ng-model="adult.middleInitial">
+			</div>
+			<div class="flex-item last-name">
+				<label for="lastName">Last name</label>
+				<input 
+				type="text" 
+				name="lastName" 
+				ng-class="{'input-error': subForm.lastName.$invalid && subForm.lastName.$touched || subForm.lastName.$invalid && formSubmitted}"
+				ng-model="adult.lastName"
+				required></td>
+			</div>
+			<div class="delete-icon" ng-click="newSubmission.adults.splice($index, 1);"><i class="fa fa-close"></i></div>
+		</div>
+		<div class="usa-grid-full add-button" ng-click="addPerson('adult');"><i class="fa fa-plus-circle"></i> Add another adult
+		</div>
+
 		<div class="usa-grid-full">
-			<div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. First and last names are required.</p></div>
+			<div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. First and last names are required.</p></div>
 		</div>
 	</div>
 	<footer class="footer-controls clearfix">

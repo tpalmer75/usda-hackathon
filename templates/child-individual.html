@@ -1,6 +1,6 @@
-<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+<form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
     <div class="content usa-grid">
-        <h3 ng-show="!currentPerson">Okay, let’s start with {{ currentPersonInfo.firstName }}.</h3>
+        <h3 ng-show="currentPerson == 0">Okay, let’s start with {{ currentPersonInfo.firstName }}.</h3>
         <h3 ng-show="(currentPerson % 2 === 0) && currentPerson != 0">Great, how about {{ currentPersonInfo.firstName }}?</h3>
         <h3 ng-show="!(currentPerson % 2 === 0) && (currentPerson > 0)">Okay, and now for {{ currentPersonInfo.firstName }}.</h3>
         <div class="hr"></div>
@@ -57,14 +57,14 @@
                 <div class="usa-width-one-half">
                     <p>
                         <input type="radio" id="incomeYes" name="incomeYes" ng-value="true" ng-model="currentPersonInfo.income" required>
-                        <label for="incomeYes">Yes</label>
+                        <label for="incomeYes" ng-click="formSubmitted = false">Yes</label>
                         <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income">
                         <label for="incomeNo">No</label>
                     </p>
                 </div>
             </div>
         </div>
-        <div class="usa-grid-full income" ng-form="subForm" class="error-wrapper" ng-class="{ 'usa-input-error' : subForm.$invalid && subForm.incomeAmount.$touched || userForm.subForm.$invalid && formSubmitted } " ng-if="currentPersonInfo.income">
+        <div class="usa-grid-full error-wrapper ng-slide-down" ng-form="subForm" ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && formSubmitted } " ng-if="currentPersonInfo.income">
         	<div class="usa-width-one-half">
                 <p>Write {{ currentPersonInfo.firstName }}'s earnings here (before tax).</p>
         	</div>
@@ -89,7 +89,7 @@
                 </div>
         	</div>
     	</div>
-        <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. All of these questions are required.</p></div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. All of these questions are required.</p></div>
     </div>
     <footer class="footer-controls clearfix">
         <button type="Submit" class="usa-button primary-action">Next</button>

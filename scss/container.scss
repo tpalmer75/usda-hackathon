@@ -30,13 +30,16 @@
 
 	.hr {
 		width: 90px;
-		height: 2px;
+		height: 4px;
 		background: $color-primary;
 		margin: 1.75em 0;
 	}
 
 	.content {
 		padding: 30px;
+		@media screen and (max-width: 599px) {
+			padding: 30px 10px 30px 18px;
+		}
 	}
 
 	.landing {
@@ -49,13 +52,13 @@
 				background-image: url('../img/landing-image-@2x.jpg');
 				background-size: cover;
 				background-position: center center;
-				@media screen and (max-width: 800px) and (min-width: 600px) {
+				@media screen and (max-width: 800px) and (min-width: 599px) {
 					padding-bottom: 66%;
 				}
 			}
 		}
 		.content {
-			@media screen and (min-width: 600px) {
+			@media screen and (min-width: 599px) {
 				padding-left: 0;					
 			}
 			@media screen and (min-width: 1201px) {
@@ -88,6 +91,9 @@
 				top: -5px;
 				display: inline-block;
 				margin-right: 10px;
+			}
+			@media screen and (max-width: 480px) {
+				display: none;
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-<form name="userForm" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+<form name="userForm" form-on-change="formSubmitted = false" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
     <div class="content usa-grid">
         <div class="usa-grid-full">
             <h3>Any other programs?</h3>
@@ -20,8 +20,12 @@
                     </div>
                 </div>
         </div>
-        <div class="error-wrapper" ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && userForm.subForm.incomeFrequency.$dirty || userForm.subForm.$invalid && formSubmitted } ">
-            <div class="usa-grid-full secondary" ng-form="subForm" ng-if="newSubmission.programs">
+        <div class="error-wrapper" 
+            ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && formSubmitted } ">
+            <div class="usa-grid-full ng-slide-down" 
+                ng-form="subForm" 
+                ng-if="newSubmission.programs">
+
             	<div class="usa-width-one-half">
                 <p>What's the case number? (Just one is fine.)</p>
             	</div>
@@ -33,7 +37,7 @@
                 </div>
             </div>
     	</div>
-        <div class="usa-input-error usa-grid-full" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs || userForm.subForm.$invalid && formSubmitted && !userForm.subForm.$pristine">
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs || userForm.subForm.$invalid && formSubmitted" >
             <p class="usa-input-error-message">You're missing some information. <span ng-if="!newSubmission.programs">This question is </span><span ng-if="newSubmission.programs">These questions are</span> required.</p>
         </div>
     </div>
