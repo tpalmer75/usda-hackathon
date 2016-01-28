@@ -68,6 +68,9 @@
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && userForm.subForm.ssn.$invalid">
             <p class="usa-input-error-message">You're missing some information. We need the last four digits of the SSN.</p>
         </div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && (newSubmission.household != (newSubmission.children.length + newSubmission.adults.length))">
+            <p class="usa-input-error-message">You didn't list the correct amount of people living in the house.</p>
+        </div>
     </div>
     <footer class="footer-controls clearfix">
         <button type="Submit" class="usa-button primary-action">Next</button>

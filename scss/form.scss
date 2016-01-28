@@ -15,7 +15,7 @@ form input[type="radio"] + label {
 input:disabled {
 	background: $color-gray-lightest;
 	border: 1px solid $color-gray-light;
-	color: $color-gray;
+	color: $color-base;
 }
 
 
@@ -208,5 +208,8 @@ input:disabled {
 		&:focus {
 			box-shadow: none;
 		}
+	}
+	a {
+		word-break: break-all;
 	}
 }

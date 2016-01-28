@@ -48,6 +48,10 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('ethnicity', {
             url: '/ethnicity',
             templateUrl : 'templates/ethnicity.html'
+        })
+        .state('finish', {
+            url: '/finish',
+            templateUrl : 'templates/finish.html'
         });
 
 })

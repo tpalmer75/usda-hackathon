@@ -2307,7 +2307,7 @@ form input[type="radio"] + label {
 input:disabled {
   background: #f1f1f1;
   border: 1px solid #aeb0b5;
-  color: #5b616b; }
+  color: #212121; }
 
 .usa-grid label, .usa-grid-full label, .usa-grid-one-whole label {
   margin: 0; }
@@ -2452,6 +2452,8 @@ input:disabled {
     background: #f1f1f1; }
   .usa-accordion-bordered button:focus {
     box-shadow: none; }
+.usa-accordion-bordered a {
+  word-break: break-all; }
 
 .user-table tr.usa-input-error {
   border-left: 3px solid #cd2026; }
