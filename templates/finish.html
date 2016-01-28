@@ -1,0 +1,12 @@
+<form name="userForm" form-on-change="formSubmitted = false" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>That's it!</h3>
+            <div class="hr"></div>
+        </div>
+        <p>We appreciate your patience and cooperation. You'll hear back from the district using the contact information you provided. You can close this page when you’re finished.</p>
+    </div>
+    <footer class="footer-controls clearfix">
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>

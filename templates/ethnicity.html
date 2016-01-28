@@ -4,7 +4,7 @@
             <h3>You're done! (But we'd be grateful if you answered this)</h3>
             <div class="hr"></div>
         </div>
-        <p>This section is completely optional, and does not effect your child’s eligibility. It is important, however, and helps us be sure we are meeting the needs of our community.</p>
+        <p>This section is completely optional, and does not effect your child’s eligibility. It's important, however, and helps us be sure we are meeting the needs of our community.</p>
         <div class="usa-grid-full">
             <div class="usa-width-one-half">
                 <h4>Ethnicity</h4>
@@ -24,10 +24,27 @@
                     <legend class="usa-sr-only">Children's ethnicity</legend>
                     <ul class="usa-unstyled-list">
                         <li>
-                            <input id="indian" type="checkbox" name="indian" ng-model="newSubmission.indian">
-                            <label for="indian">American Indian or Alaskan Native</label>
+                            <input id="indianOrAlaskan" type="checkbox" name="indianOrAlaskan" ng-model="newSubmission.indianOrAlaskan">
+                            <label for="indianOrAlaskan">American Indian or Alaskan Native</label>
+                        </li>
+                        <li>
+                            <input id="asian" type="checkbox" name="asian" ng-model="newSubmission.asian">
+                            <label for="asian">Asian</label>
+                        </li>
+                        <li>
+                            <input id="blackOrAfrican" type="checkbox" name="blackOrAfrican" ng-model="newSubmission.blackOrAfrican">
+                            <label for="blackOrAfrican">Black or African</label>
+                        </li>
+                        <li>
+                            <input id="hawaiianOrIslander" type="checkbox" name="hawaiianOrIslander" ng-model="newSubmission.hawaiianOrIslander">
+                            <label for="hawaiianOrIslander">Native Hawaiian or Other Pacific Islander</label>
+                        </li>
+                        <li>
+                            <input id="white" type="checkbox" name="white" ng-model="newSubmission.white">
+                            <label for="white">White</label>
                         </li>
                     </ul>
+                </fieldset>
             </div>
         </div>
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted && !newSubmission.programs || userForm.subForm.$invalid && formSubmitted">
@@ -36,7 +53,7 @@
     </div>
     <footer class="footer-controls clearfix">
         <button type="Submit" class="usa-button primary-action">Done</button>
-        <button type="button" class="usa-button-secondary">No, thanks</button>
+        <button type="Submit" class="usa-button-secondary">No, thanks</button>
         <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
     </footer>
 </form>
