@@ -146,7 +146,7 @@ angular.module('lunch.controllers', [])
 			}
 
 			$scope.formSubmitted = false;
-			document.body.scrollTop = 0;
+			document.body.scrollTop = 85;
 
 		} else {
 			return;
