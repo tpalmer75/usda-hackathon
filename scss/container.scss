@@ -5,6 +5,7 @@
 	//padding: 20px;
 	box-shadow: 0 2px 5px rgba(0,0,0,.3);
 	position: relative;
+	overflow-x: hidden;
 
 	// NG ANIMATIONS
 	.wrapper {
@@ -46,7 +47,6 @@
 		.usa-grid {
 			padding: 0;
 			.image-container {
-				background: red;
 				height: 0;
 				padding-bottom: 46.5%;
 				background-image: url('../img/landing-image-@2x.jpg');
