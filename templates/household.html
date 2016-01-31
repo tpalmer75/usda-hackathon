@@ -25,7 +25,7 @@
             <div class="usa-alert usa-alert-warning">
                 <div class="usa-alert-body">
                   <h3 class="usa-alert-heading">Oops! Not by our count...</h3>
-                  <p class="usa-alert-text">You said {{ newSubmission.household }} <span ng-if="newSubmission.household > 1">people live</span><span ng-if="newSubmission.household == 1">person lives</span> in the house but you only listed {{ newSubmission.children.length + newSubmission.adults.length }}. Please review the children and the adults and try again.</p>
+                  <p class="usa-alert-text">You said {{ newSubmission.household }} <span ng-if="newSubmission.household > 1">people live</span><span ng-if="newSubmission.household == 1">person lives</span> in the house but you only listed {{ newSubmission.children.length + newSubmission.adults.length }}. Please review the <a ui-sref="child-add">children</a> and the <a ui-sref="adult-add">adults</a> and try again.</p>
                 </div>
             </div>
         </div>
