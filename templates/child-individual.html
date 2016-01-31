@@ -37,7 +37,7 @@
         <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.homelessMigrantRunawayYes.$invalid && formSubmitted }">
             <div class="usa-grid-full compact" ng-if="!newSubmission.programs">
                 <div class="usa-width-one-half">
-                    <p>Is {{ currentPersonInfo.firstName }} a homeless, migrant, runaway, or a Head Start participant?</p>
+                    <p>Is {{ currentPersonInfo.firstName }} homeless, a migrant, a runaway, or Head Start participant?</p>
                 </div>
                 <div class="usa-width-one-half">
                     <p>
@@ -52,7 +52,7 @@
         <div class="error-wrapper" ng-class="{ 'usa-input-error': userForm.incomeYes.$invalid && formSubmitted }">
             <div class="usa-grid-full" ng-if="!newSubmission.programs">
                 <div class="usa-width-one-half">
-                    <p>Does {{ currentPersonInfo.firstName }} earn an income?</p>
+                    <p>Does {{ currentPersonInfo.firstName }} earn an income from work, social security, disability, or any other external source?</p>
                 </div>
                 <div class="usa-width-one-half">
                     <p>
@@ -66,7 +66,7 @@
         </div>
         <div class="usa-grid-full error-wrapper ng-slide-down" ng-form="subForm" ng-class="{ 'usa-input-error' : userForm.subForm.$invalid && formSubmitted } " ng-if="currentPersonInfo.income">
         	<div class="usa-width-one-half">
-                <p>Write {{ currentPersonInfo.firstName }}'s earnings here (before tax).</p>
+                <p>Write {{ currentPersonInfo.firstName }}'s income here (before tax).</p>
         	</div>
         	<div class="usa-width-one-half">
         		<div class="usa-grid-full income-input">
