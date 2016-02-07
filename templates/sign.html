@@ -1,0 +1,22 @@
+<form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
+    <div class="content usa-grid">
+        <div class="usa-grid-full">
+            <h3>Next, your signature promises that you're telling the truth.</h3>
+            <div class="hr"></div>
+        </div>
+        <p>The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds; School officials may verify the information on the application; and deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.</p>
+        <div class="text-form">
+            <div ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
+                <label for="Signature">Signature (Printed&nbsp;Name)</label>
+                <input type="text" ng-model="newSubmission.contact.signature" name="signature" id="signature" required>
+            </div>
+        </div>
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted">
+            <p class="usa-input-error-message">You're missing some information. We need your signature to continue.</p>
+        </div>
+    </div>
+    <footer class="footer-controls clearfix">
+        <button type="Submit" class="usa-button primary-action">Next</button>
+        <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
+    </footer>
+</form>

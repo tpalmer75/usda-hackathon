@@ -17,9 +17,36 @@ angular.module('lunch.controllers', [])
 	// formate it with Angular
 	$scope.filteredDate = $filter('date')(currentDate, "MMM dd, y");
 
+	$scope.frequencyValues = [
+        {name : "Weekly", id : 52},
+        {name : "Bi-weekly", id : 26},
+        {name : "2x per month", id : 24},
+        {name : "Monthly", id : 12},
+        {name : "Yearly", id : 1}];
+
 	// this loads on the first step
-	$scope.resetData = function() {
-		$scope.newSubmission = {
+	// $scope.resetData = function() {
+	// 	$scope.newSubmission = {
+	// 		children: [
+	// 			{
+	// 				firstName: '',
+	// 				middleInitial: '',
+	// 				lastName: '',
+	// 			}
+	// 		],
+	// 		adults: [
+	// 			{
+	// 				firstName: '',
+	// 				middleInitial: '',
+	// 				lastName: ''
+	// 			}
+	// 		],
+	// 		date: $scope.filteredDate,
+	// 		primaryWageEarner: null
+	// 	};
+	// };
+
+	$scope.newSubmission = {
 			children: [
 				{
 					firstName: '',
@@ -34,8 +61,12 @@ angular.module('lunch.controllers', [])
 					lastName: ''
 				}
 			],
-			date: $scope.filteredDate
+			date: $scope.filteredDate,
+			primaryWageEarner: null
 		};
+
+	$scope.showTooltip = function() {
+		
 	};
 
 	// adding children or adults
@@ -69,7 +100,6 @@ angular.module('lunch.controllers', [])
 		} else if (incoming === 'child-individual') {
 			$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
 		}
-		console.log($scope.newSubmission);
 	});
 
 	// to move forward in the app
@@ -77,7 +107,13 @@ angular.module('lunch.controllers', [])
 		if(isValid) {
 
 			switch($state.current.name) {
+				case 'intro':
+					$state.go('legal');
+					break;
 				case 'legal':
+					$state.go('sign');
+					break;
+				case 'sign':
 					$state.go('programs');
 					break;
 				case 'programs':
@@ -126,6 +162,16 @@ angular.module('lunch.controllers', [])
 					if ( $scope.newSubmission.adults[$scope.currentPerson] ) {
 						$state.go('adult-individual', { idx: $scope.currentPerson });
 					} else {
+						var mostWages = 0;
+						for(var x = 0;x < $scope.newSubmission.adults.length ;x++) {
+							var currentWageEarner = $scope.newSubmission.adults[x];
+							var currentWages = ($scope.newSubmission.adults[x].workIncomeAmount * $scope.newSubmission.adults[x].workIncomeFrequency);
+							if (currentWages > mostWages && currentWages > 0) {
+								mostWages = currentWages;
+								$scope.newSubmission.primaryWageEarner = currentWageEarner.firstName;
+							}
+
+						}
 						$state.go('household');
 					}
 					break;

@@ -3,7 +3,6 @@
 //var lunchApp = angular.module('lunchApp', ['ngRoute', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase']);
 var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.controllers']);
 
-// configure our routes
 lunchApp.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -12,6 +11,14 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '/',
             templateUrl : 'templates/landing.html',
+        })
+        .state('intro', {
+            url: '/intro',
+            templateUrl : 'templates/intro.html',
+        })
+        .state('sign', {
+            url: '/sign',
+            templateUrl : 'templates/sign.html',
         })
         .state('child-add', {
             url: '/children',
@@ -80,18 +87,5 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
     },
   };
 });
-
-
-// .animation('.ng-slide-down', function() {
-//     return {
-//         beforeAddClass: function(element, className, done) {
-//             if(className === 'ng-leave') {
-//                 element.slideUp(done); 
-//             } else if (className === 'ng-enter') {
-//                 element.hide().slideDown(done);
-//             }
-//         }
-//     };
-// });
 
 

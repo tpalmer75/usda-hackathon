@@ -2432,7 +2432,8 @@ input:disabled {
 .add-button {
   color: #2e8540;
   cursor: pointer;
-  margin-top: 10px; }
+  margin-top: 10px;
+  display: inline-block; }
   .add-button .fa {
     font-size: 24px;
     margin-right: 8px;
@@ -2477,7 +2478,7 @@ input:disabled {
   display: inline-block;
   width: 100%; }
 
-.contact-form .input-error input {
+.text-form .input-error input {
   border: 3px solid #cd2026;
   margin: 0; }
 

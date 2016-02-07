@@ -4,8 +4,8 @@
             <h3>Alright, let's wrap this up.</h3>
             <div class="hr"></div>
         </div>
-        <p>The only required information is your signature. Providing current and accurate contact information can help the school inform you about their decision and stay organized.
-        <div class="flex contact-form">
+        <p>This step is optional, but providing current and accurate contact information can help the school inform you about their decision and stay organized.
+        <div class="flex contact-form text-form">
             <div class="flex-item size-4">
                 <label for="address">Street Address (if&nbsp;available)</label>
                 <input type="text" ng-model="newSubmission.contact.address" name="address" id="address">
@@ -34,11 +34,11 @@
                 <label for="email">Email</label>
                 <input type="email" ng-model="newSubmission.contact.email" name="email" id="email">
             </div>
-            <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
+            <!-- <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
                 <label for="Signature">Signature (Printed&nbsp;Name)<span>*</span></label>
                 <input type="text" ng-model="newSubmission.contact.signature" name="signature" id="signature" required>
-            </div>
-            <div class="flex-item size-3">
+            </div> -->
+            <div class="flex-item size-3" style-"max-width: 300px">
                 <label for="date">Date</label>
                 <input ng-model="newSubmission.date" name="date" disabled>
             </div>
