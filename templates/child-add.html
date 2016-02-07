@@ -1,6 +1,6 @@
 <form name="userForm" form-on-change="formSubmitted = false" ng-submit="formSubmitted = true; goNext(userForm.$valid);" novalidate>
 	<div class="usa-grid content">
-		<h3>First, let’s list each child you’re applying for.</h3>
+		<h3>Now let’s list each child you’re applying for.</h3>
 		<div class="hr"></div>
 		<p>This is anyone under 18 or in high school who is living with you and shares income and expenses, even if they’re not related.</p>
 		<div class="user-table header">
@@ -15,7 +15,7 @@
 				<input 
 				type="text" 
 				name="firstName" 
-				ng-class="{'input-error': subForm.firstName.$invalid && subForm.firstName.$touched || subForm.firstName.$invalid && formSubmitted}" 
+				ng-class="{'input-error': subForm.firstName.$invalid && formSubmitted}" 
 				ng-model="child.firstName" 
 				required>
 			</div>
@@ -30,7 +30,7 @@
 				<input 
 				type="text" 
 				name="lastName" 
-				ng-class="{'input-error': subForm.lastName.$invalid && subForm.lastName.$touched || subForm.lastName.$invalid && formSubmitted}"
+				ng-class="{'input-error': subForm.lastName.$invalid && formSubmitted}"
 				ng-model="child.lastName"
 				required></td>
 			</div>

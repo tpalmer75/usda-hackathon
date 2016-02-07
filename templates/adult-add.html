@@ -15,7 +15,7 @@
 				<input 
 				type="text" 
 				name="firstName" 
-				ng-class="{'input-error': subForm.firstName.$invalid && subForm.firstName.$touched || subForm.firstName.$invalid && formSubmitted}" 
+				ng-class="{'input-error': subForm.firstName.$invalid && formSubmitted}" 
 				ng-model="adult.firstName" 
 				required>
 			</div>
@@ -30,7 +30,7 @@
 				<input 
 				type="text" 
 				name="lastName" 
-				ng-class="{'input-error': subForm.lastName.$invalid && subForm.lastName.$touched || subForm.lastName.$invalid && formSubmitted}"
+				ng-class="{'input-error': subForm.lastName.$invalid && formSubmitted }"
 				ng-model="adult.lastName"
 				required></td>
 			</div>

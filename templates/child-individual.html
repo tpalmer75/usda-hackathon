@@ -58,8 +58,9 @@
                     <p>
                         <input type="radio" id="incomeYes" name="incomeYes" ng-value="true" ng-model="currentPersonInfo.income" required>
                         <label for="incomeYes" ng-click="formSubmitted = false">Yes</label>
-                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income">
+                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income" ng-change="currentPersonInfo.incomeAmount = false; currentPersonInfo.incomeFrequency = false">
                         <label for="incomeNo">No</label>
+
                     </p>
                 </div>
             </div>
@@ -78,17 +79,24 @@
                     </div>
                     <div class="usa-width-one-half">
                         <label for="frequency">How often?</label>
-                        <select name="incomeFrequency" id="frequency" ng-model="currentPersonInfo.incomeFrequency" required>
-                            <option value="52">Weekly</option>
-                            <option value="26">Bi-weekly</option>
-                            <option value="24">2x per month</option>
-                            <option value="12">Monthly</option>
-                            <option value="1">Yearly</option>
+                        <select 
+                        name="incomeFrequency" 
+                        id="frequency" 
+                        ng-model="currentPersonInfo.incomeFrequency"
+                        ng-options="item.id as item.name for item in frequencyValues" 
+                        required>
                         </select>
                     </div>
                 </div>
         	</div>
     	</div>
+        <div class="usa-grid-full ng-slide-down" ng-if="userForm.$valid &&currentPersonInfo.incomeFrequency">
+            <div class="usa-alert usa-alert-info">
+                <div class="usa-alert-body">
+                  <p class="usa-alert-text">The income information is really important. You said {{ currentPersonInfo.firstName }} makes ${{ currentPersonInfo.incomeAmount * currentPersonInfo.incomeFrequency }} per year. If that sounds right, go ahead and continue.</p>
+                </div>
+            </div>
+        </div>
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted"><p class="usa-input-error-message">You're missing some information. All of these questions are required.</p></div>
     </div>
     <footer class="footer-controls clearfix">

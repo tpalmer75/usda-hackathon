@@ -33,7 +33,7 @@
             <div class="usa-grid-full">
                 
                     <div class="usa-width-one-half">
-                        <p>Do you or someone in the house have a social security number (SSN)?</p>
+                        <p>Do you or another adult in the house have a social security number (SSN)?</p>
                     </div>
                     <div class="usa-width-one-half">
                         <p>
@@ -52,7 +52,7 @@
                 ng-if="newSubmission.programs">
 
                 <div class="usa-width-one-half">
-                <p>What are the last four digits of their SSN?</p>
+                <p>What are the last four digits of their SSN? <span ng-show="newSubmission.primaryWageEarner">(Preferrably {{newSubmission.primaryWageEarner}} if they're making most of the money.)</span></p>
                 </div>
                 <div class="usa-width-one-half">
                     <label>Social security number</label>
