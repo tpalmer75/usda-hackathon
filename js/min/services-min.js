@@ -1,1 +1,1 @@
-angular.module("lunch.services",[]).factory("Submissions",function(n,s){var u=new Firebase("https://lunchux.firebaseIO.com/submissions"),e=n(u);return{all:function(){return e}}});
+angular.module("lunch.services",[]).factory("Submissions",function(n){var s=new Firebase("https://lunchux.firebaseIO.com/testSubmissions"),e=n(s);return{all:function(){return e}}});

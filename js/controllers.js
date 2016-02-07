@@ -2,9 +2,9 @@
 
 angular.module('lunch.controllers', [])
 
-.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams, $filter) {
+.controller('MainCtrl', function($rootScope, $scope, $state, $stateParams, $filter, Submissions) {
 	
-	//var data = Submissions.all();
+	var data = Submissions.all();
 
 	// the entire object for our user data
 	$scope.newSubmission = {};
@@ -16,6 +16,8 @@ angular.module('lunch.controllers', [])
 	var currentDate = new Date();
 	// formate it with Angular
 	$scope.filteredDate = $filter('date')(currentDate, "MMM dd, y");
+	// so we don't submit more than once
+	var dataPushed = false;
 
 	$scope.frequencyValues = [
         {name : "Weekly", id : 52},
@@ -188,6 +190,14 @@ angular.module('lunch.controllers', [])
 					break;
 				case 'ethnicity':
 					$state.go('finish');
+					console.log('should be starting');
+					if (dataPushed) {
+						data.$update($scope.newSubmission);
+						console.log('updated');
+					} else {
+						data.$add($scope.newSubmission);
+						console.log('pushed', $scope.newSubmission);
+					}
 					break;
 			}
 
