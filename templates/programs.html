@@ -8,7 +8,7 @@
             <div class="usa-grid-full">
                 
                     <div class="usa-width-one-half">
-                        <p>Is anyone in the house (including you) currently participating in  <a href="http://www.fns.usda.gov/snap/supplemental-nutrition-assistance-program-snap" target="_blank">SNAP</a>, <a href="http://www.acf.hhs.gov/programs/ofa/programs/tanf" target="_blank">TANF</a>, or <a href="http://www.fns.usda.gov/fdpir/food-distribution-program-indian-reservations-fdpir" target="_blank">FDPIR?</a></p>
+                        <p>Is anyone in the house (including you) currently participating in  <a ng-click="showModal = true">SNAP</a>, <a ng-click="showModal = true">TANF</a>, or <a ng-click="showModal = true">FDPIR?</a></p>
                     </div>
                     <div class="usa-width-one-half">
                         <p>
@@ -45,4 +45,17 @@
         <button type="Submit" class="usa-button primary-action">Next</button>
         <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
     </footer>
+    <div class="modal-wrapper" ng-show="showModal">
+        <div class="modal-container">
+            <p>
+                These are the other government assistance programs that we need to know about.
+                <ul style="margin-bottom: 0">
+                    <li>Supplemental Nutrition Assistance Program (SNAP)</li>
+                    <li>Temporary Assistance for Needy Families (TANF)</li>
+                    <li>Food Distribution Program on Indian Reservations (FDPIR)</li>
+                </ul>
+            </p>
+            <i class="fa fa-times-circle" ng-click="showModal = false"></i>
+        </div>
+    </div>
 </form>
