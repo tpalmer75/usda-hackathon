@@ -20,7 +20,6 @@ input:disabled {
 
 
 .usa-grid, .usa-grid-full, .usa-grid-one-whole {
-
 	label {
 		margin: 0;
 	}
@@ -109,7 +108,6 @@ input:disabled {
 
 .user-table {
 	align-items: center;
-	//margin-top: 10px;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: row;
@@ -213,4 +211,31 @@ input:disabled {
 	a {
 		word-break: break-all;
 	}
+}
+
+.flex-help {
+	display: -webkit-flex;
+	display: flex;
+}
+
+.income-input {
+	padding-right: 30px;
+	.usa-width-one-half {
+		position: relative;
+	}
+	.fa-question-circle {
+		position: absolute;
+		bottom: 12px;
+		right: -30px;
+		font-size: 24px;
+		color: $color-gray-light;
+		cursor: pointer;
+	}
+}
+.usa-input-error {
+	.income-input {
+		.fa-question-circle {
+			right: -42px;
+		}
+	}	
 }

@@ -7,7 +7,7 @@
         <div 
             class="error-wrapper" 
             ng-class="{ 'usa-input-error': userForm.workIncomeYes.$invalid && formSubmitted }">
-            <div class="usa-grid-full compact">
+            <div class="usa-grid-full">
                 <div class="usa-width-one-half">
                     <p>Does {{ currentPersonInfo.firstName }} earn income from work?</p>
                 </div>
@@ -27,7 +27,7 @@
                             name="workIncomeNo" 
                             ng-value="false" 
                             ng-model="currentPersonInfo.workIncome" 
-                            ng-change="currentPersonInfo.workIncomeAmount = false; currentPersonInfo.workIncomeFrequency = false"
+                            ng-change="currentPersonInfo.workIncomeAmount = null; currentPersonInfo.workIncomeFrequency = null"
                             required>
                         <label for="workIncomeNo">No</label>
                     </p>
@@ -58,6 +58,7 @@
                         ng-options="item.id as item.name for item in frequencyValues" 
                         required>
                         </select>
+                        <i class="fa fa-question-circle" ng-click="$parent.showModal = true"></i>
                     </div>
                 </div>
             </div>
@@ -85,7 +86,7 @@
                             name="secondIncomeNo" 
                             ng-value="false" 
                             ng-model="currentPersonInfo.secondIncome"
-                            ng-change="currentPersonInfo.secondIncomeAmount = false; currentPersonInfo.secondIncomeFrequency = false"
+                            ng-change="currentPersonInfo.secondIncomeAmount = null; currentPersonInfo.secondIncomeFrequency = null"
                             required>
                         <label for="secondIncomeNo">No</label>
                     </p>
@@ -118,6 +119,7 @@
                         ng-options="item.id as item.name for item in frequencyValues" 
                         required>
                         </select>
+                        <i class="fa fa-question-circle" ng-click="$parent.showModal = true"></i>
                     </div>
                 </div>
             </div>
@@ -139,4 +141,12 @@
         <button type="Submit" class="usa-button primary-action">Next</button>
         <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
     </footer>
+    <div class="modal-wrapper" ng-show="showModal">
+        <div class="modal-container">
+            <p>This field indicates how often the income amount is earned. For example:</p>
+            <p><strong>2x per month:</strong> some months have 5 weeks, but if you get paid exactly twice per month then you're paid 24 times per year.</p>
+            <p><strong>Bi-weekly:</strong> this is exactly every other week, or 26 times a year (because there are 52 weeks in a year).</p>
+            <i class="fa fa-times-circle" ng-click="showModal = false"></i>
+        </div>
+    </div>
 </form>

@@ -58,7 +58,7 @@
                     <p>
                         <input type="radio" id="incomeYes" name="incomeYes" ng-value="true" ng-model="currentPersonInfo.income" required>
                         <label for="incomeYes" ng-click="formSubmitted = false">Yes</label>
-                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income" ng-change="currentPersonInfo.incomeAmount = false; currentPersonInfo.incomeFrequency = false">
+                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income" ng-change="currentPersonInfo.incomeAmount = null; currentPersonInfo.incomeFrequency = null">
                         <label for="incomeNo">No</label>
 
                     </p>
@@ -79,13 +79,14 @@
                     </div>
                     <div class="usa-width-one-half">
                         <label for="frequency">How often?</label>
-                        <select 
-                        name="incomeFrequency" 
-                        id="frequency" 
-                        ng-model="currentPersonInfo.incomeFrequency"
-                        ng-options="item.id as item.name for item in frequencyValues" 
-                        required>
-                        </select>
+                            <select 
+                            name="incomeFrequency" 
+                            id="frequency" 
+                            ng-model="currentPersonInfo.incomeFrequency"
+                            ng-options="item.id as item.name for item in frequencyValues" 
+                            required>
+                            </select>
+                            <i class="fa fa-question-circle" ng-click="$parent.showModal = true"></i>
                     </div>
                 </div>
         	</div>
@@ -103,4 +104,12 @@
         <button type="Submit" class="usa-button primary-action">Next</button>
         <div ng-click="goBack();" class="back-button"><i class="fa fa-angle-left"></i>Back</div>
     </footer>
+    <div class="modal-wrapper" ng-show="showModal">
+        <div class="modal-container">
+            <p>This field indicates how often the income amount is earned. For example:</p>
+            <p><strong>2x per month:</strong> some months have 5 weeks, but if you get paid exactly twice per month then you're paid 24 times per year.</p>
+            <p><strong>Bi-weekly:</strong> this is exactly every other week, or 26 times a year (because there are 52 weeks in a year).</p>
+            <i class="fa fa-times-circle" ng-click="showModal = false"></i>
+        </div>
+    </div>
 </form>
