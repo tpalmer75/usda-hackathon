@@ -34,18 +34,19 @@
                 <label for="email">Email</label>
                 <input type="email" ng-model="newSubmission.contact.email" name="email" id="email">
             </div>
-            <!-- <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
-                <label for="Signature">Signature (Printed&nbsp;Name)<span>*</span></label>
-                <input type="text" ng-model="newSubmission.contact.signature" name="signature" id="signature" required>
-            </div> -->
             <div class="flex-item size-3" style-"max-width: 300px">
                 <label for="date">Date</label>
                 <input ng-model="newSubmission.date" name="date" disabled>
             </div>
         </div>
+<<<<<<< HEAD
         <p style="font-size: 14px; color: #454341;">The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds; School officials may verify the information on the application; and deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.</p>
         <div class="usa-input-error usa-grid-full" ng-if="formSubmitted && userForm.$invalid">
             <p class="usa-input-error-message">Looks like some of the information isn't formatted correctly. We marked it in red.</p>
+=======
+        <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && userForm.$invalid">
+            <p class="usa-input-error-message"><span ng-show="userForm.state.$invalid">The state is invalid. It should just be the two letter abbreviation of your state.</span> <span ng-show="userForm.email.$invalid">The email is invalid.</span></p>
+>>>>>>> master
         </div>
     </div>
     <footer class="footer-controls clearfix">

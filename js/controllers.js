@@ -12,6 +12,8 @@ angular.module('lunch.controllers', [])
 	$scope.formSubmitted = false;
 	// when going through children and adults
 	$scope.currentPersonInfo = {};
+	// for showing pop ups
+	$scope.showModal = false;
 	// grab the date
 	var currentDate = new Date();
 	// formate it with Angular
