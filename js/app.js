@@ -1,7 +1,7 @@
 /*global angular:true */ // Codekit fix 
 
-//var lunchApp = angular.module('lunchApp', ['ngRoute', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase']);
-var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.controllers']);
+var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase','ngCsv']);
+//var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.controllers']);
 
 lunchApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -59,8 +59,11 @@ lunchApp.config(function($stateProvider, $urlRouterProvider) {
         .state('finish', {
             url: '/finish',
             templateUrl : 'templates/finish.html'
+        })
+        .state('export', {
+            url: '/export',
+            templateUrl : 'templates/export.html'
         });
-
 })
 
 
