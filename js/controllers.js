@@ -214,6 +214,10 @@ angular.module('lunch.controllers', [])
 
 	/// FOR EXPORTING DATA
 
-	$scope.testData = Submissions.test();
+	$scope.testData = [{
+				0: "Bob",
+				1: "Joe",
+				2: "Dan"
+			}];
 
 });
