@@ -211,4 +211,9 @@ angular.module('lunch.controllers', [])
 		}
 	};
 
+
+	/// FOR EXPORTING DATA
+
+	$scope.testData = Submissions.test();
+
 });

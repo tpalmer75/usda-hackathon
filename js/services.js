@@ -10,6 +10,14 @@ angular.module('lunch.services', [])
 	return {
 		all: function() {
 		  return submissions;
+		},
+		test: function() {
+			var testData = {
+				0: "Bob",
+				1: "Joe",
+				2: "Dan"
+			};
+			return testData;
 		}
 	};
 });
