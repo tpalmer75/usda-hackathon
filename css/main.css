@@ -2206,15 +2206,12 @@ fieldset {
   height: 125px;
   padding: 20px;
   text-align: center; }
-  #main-header .wrapper {
-    text-align: left;
-    max-width: 1064px;
-    margin: auto; }
   #main-header a:focus {
     box-shadow: none; }
 
 #logo {
-  width: 240px; }
+  width: 60px;
+  margin: auto; }
 
 #main-footer {
   text-align: center;
@@ -2299,16 +2296,17 @@ fieldset {
       padding-bottom: 46.5%;
       background-image: url("../img/landing-image-@2x.jpg");
       background-size: cover;
-      background-position: center center; }
-      @media screen and (max-width: 800px) and (min-width: 599px) {
+      background-position: center center;
+      margin: 0; }
+      @media screen and (max-width: 800px) and (min-width: 600px) {
         #main-container .landing .usa-grid .image-container {
           padding-bottom: 66%; } }
-  @media screen and (min-width: 599px) {
+      @media screen and (min-width: 600px) {
+        #main-container .landing .usa-grid .image-container {
+          width: 50%; } }
+  @media screen and (min-width: 600px) {
     #main-container .landing .content {
-      padding-left: 0; } }
-  @media screen and (min-width: 1201px) {
-    #main-container .landing .content {
-      padding-left: 10px; } }
+      width: 50%; } }
   #main-container .usa-accordion-content {
     height: 125px;
     overflow-y: scroll; }
@@ -2469,7 +2467,8 @@ input:disabled {
   .user-table .delete-icon {
     right: 0;
     left: initial;
-    color: #e31c3d; }
+    color: #e31c3d;
+    cursor: pointer; }
   .user-table.no-delete .delete-icon {
     display: none; }
   @media screen and (max-width: 480px) {
