@@ -3,18 +3,15 @@
 	height: 125px;
 	padding: 20px;
 	text-align: center;
-	.wrapper {
-		text-align: left;
-		max-width: 1064px;
-		margin: auto;
-	}
 	a:focus {
 		box-shadow: none;
 	}
 }
 
 #logo {
-	width: 240px;}
+	width: 60px;
+	margin: auto;
+}
 
 #main-footer {
 	text-align: center;
@@ -122,19 +119,19 @@
 				background-image: url('../img/landing-image-@2x.jpg');
 				background-size: cover;
 				background-position: center center;
-				@media screen and (max-width: 800px) and (min-width: 599px) {
+				margin: 0;
+				@media screen and (max-width: 800px) and (min-width: 600px) {
 					padding-bottom: 66%;
 				}
+				@media screen and (min-width: 600px) {
+					width: 50%;
+				}	
 			}
 		}
 		.content {
-			@media screen and (min-width: 599px) {
-				padding-left: 0;					
+			@media screen and (min-width: 600px) {
+				width: 50%;
 			}
-			@media screen and (min-width: 1201px) {
-				padding-left: 10px;
-			}
-
 		}
 	}
 
