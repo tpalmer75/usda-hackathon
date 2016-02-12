@@ -3,8 +3,6 @@
 angular.module('lunch.controllers', [])
 
 .controller('MainCtrl', function($rootScope, $scope, $state, $stateParams, $filter, Submissions) {
-	
-	var data = Submissions.all();
 
 	// the entire object for our user data
 	$scope.newSubmission = {};
@@ -20,6 +18,8 @@ angular.module('lunch.controllers', [])
 	$scope.filteredDate = $filter('date')(currentDate, "MMM dd, y");
 	// so we don't submit more than once
 	var dataPushed = false;
+	// the formatted data
+	var formattedData = [];
 
 	$scope.frequencyValues = [
         {name : "Weekly", id : 52},
@@ -27,50 +27,52 @@ angular.module('lunch.controllers', [])
         {name : "2x per month", id : 24},
         {name : "Monthly", id : 12},
         {name : "Yearly", id : 1}];
+	
 
-	// this loads on the first step
-	// $scope.resetData = function() {
-	// 	$scope.newSubmission = {
-	// 		children: [
-	// 			{
-	// 				firstName: '',
-	// 				middleInitial: '',
-	// 				lastName: '',
-	// 			}
-	// 		],
-	// 		adults: [
-	// 			{
-	// 				firstName: '',
-	// 				middleInitial: '',
-	// 				lastName: ''
-	// 			}
-	// 		],
-	// 		date: $scope.filteredDate,
-	// 		primaryWageEarner: null
-	// 	};
-	// };
+	$scope.emptyPerson = {
+		signature: "",
+		programs: "",
+		caseNumber: "",
+		firstName: "",
+		MI: "",
+		lastName: "",
+		income: null,
+		student: null,
+		homeLessMigrantRunaway: null,
+		fosterChild: null,
+		street: '',
+		apt: '',
+		city: '',
+		state: '',
+		zip: '',
+		phone: null,
+		date: null,
+		hispanic: null,
+		indianAlaskan: null,
+		asian: null,
+		black: null,
+		hawaiianIslander: null,
+		white: null
+	};
 
 	$scope.newSubmission = {
-			children: [
-				{
-					firstName: '',
-					middleInitial: '',
-					lastName: '',
-				}
-			],
-			adults: [
-				{
-					firstName: '',
-					middleInitial: '',
-					lastName: ''
-				}
-			],
-			date: $scope.filteredDate,
-			primaryWageEarner: null
-		};
-
-	$scope.showTooltip = function() {
-		
+		children: [
+			{
+				firstName: $scope.newSubmission.testInfo,
+				middleInitial: '',
+				lastName: '',
+			}
+		],
+		adults: [
+			{
+				firstName: '',
+				middleInitial: '',
+				lastName: ''
+			}
+		],
+		date: $scope.filteredDate,
+		primaryWageEarner: null,
+		testInfo: 'foo'
 	};
 
 	// adding children or adults
@@ -89,6 +91,40 @@ angular.module('lunch.controllers', [])
 				break;
 		}
 	};
+
+	var formatData = function() {
+		// format the data from each child
+		var temp = {};
+		for(var i=0; i < newSubmission.children.length; i++) {
+			var sub = $scope.newSubmission;
+			var ref = newSubmission.children.length[i];
+			temp = {
+				signature: sub.signature,
+				programs: sub.programs,
+				caseNumber: sub.caseNumber,
+				firstName: ref.firstName,
+				middleInitial: ref.middleInitial,
+				lastName: ref.lastName,
+				income: null,
+				student: null,
+				homeLessMigrantRunaway: null,
+				fosterChild: null,
+				street: '',
+				apt: '',
+				city: '',
+				state: '',
+				zip: '',
+				phone: null,
+				date: null,
+				hispanic: null,
+				indianAlaskan: null,
+				asian: null,
+				black: null,
+				hawaiianIslander: null,
+				white: null
+			}
+		}
+	}
 
 	// to move back in the app
 	$scope.goBack = function() {
@@ -193,13 +229,13 @@ angular.module('lunch.controllers', [])
 				case 'ethnicity':
 					$state.go('finish');
 					console.log('should be starting');
-					if (dataPushed) {
-						data.$update($scope.newSubmission);
-						console.log('updated');
-					} else {
-						data.$add($scope.newSubmission);
-						console.log('pushed', $scope.newSubmission);
-					}
+					// if (dataPushed) {
+					// 	data.$update($scope.newSubmission);
+					// 	console.log('updated');
+					// } else {
+					// 	data.$add($scope.newSubmission);
+					// 	console.log('pushed', $scope.newSubmission);
+					// }
 					break;
 			}
 
@@ -214,10 +250,63 @@ angular.module('lunch.controllers', [])
 
 	/// FOR EXPORTING DATA
 
-	$scope.testData = [{
-				0: "Bob",
-				1: "Joe",
-				2: "Dan"
-			}];
+	// var tempData = Submissions.all();
+	// $scope.dataReady = false;
+	// $scope.exportButton = "Loading...";
+
+	// tempData.$loaded().then(function() {
+	// 	$scope.dataReady = true;
+	// 	$scope.data = tempData;
+	// 	$scope.exportButton = "Download CSV";
+	// });
+
+	$scope.dataReady = true;
+
+	// $scope.data = [{
+	// 	name: "John",
+	// 	occupation: "builder",
+	// 	isLatino: "true",
+	// 	income: "40000",
+	// 	phone: 1234567890
+	// }, {
+	// 	name: "Bill",
+	// 	occupation: "builder",
+	// 	isLatino: "true",
+	// 	income: "40000",
+	// 	phone: 1234567890
+	// }, {
+	// 	name: "Susan",
+	// 	occupation: "builder",
+	// 	isLatino: "true",
+	// 	income: "40000",
+	// 	phone: 1234567890
+	// }];
+
+	$scope.data = [{
+		signature: "test",
+		programs: "test",
+		caseNumber: "test",
+		firstName: "test",
+		MI: "test",
+		lastName: "test",
+		income:"test",
+		student:"test",
+		homeLessMigrantRunaway:"test",
+		fosterChild:"test",
+		street:"test",
+		apt:"test",
+		city:"test",
+		state:"test",
+		zip:"test",
+		phone:"test",
+		date:"test",
+		hispanic:"test",
+		indianAlaskan:"test",
+		asian:"test",
+		black:"test",
+		hawaiianIslander:"test",
+		white:"test",
+	}];
+
 
 });
