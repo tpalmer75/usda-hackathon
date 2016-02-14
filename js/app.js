@@ -1,6 +1,6 @@
 /*global angular:true */ // Codekit fix 
 
-var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase','ngCsv']);
+var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.services', 'lunch.controllers', 'firebase','ngCsv', 'ngSanitize']);
 //var lunchApp = angular.module('lunchApp', ['ui.router', 'ngAnimate', 'lunch.controllers']);
 
 lunchApp.config(function($stateProvider, $urlRouterProvider) {
