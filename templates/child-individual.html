@@ -58,7 +58,7 @@
                     <p>
                         <input type="radio" id="incomeYes" name="incomeYes" ng-value="true" ng-model="currentPersonInfo.income" required>
                         <label for="incomeYes" ng-click="formSubmitted = false">Yes</label>
-                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income" ng-change="currentPersonInfo.incomeAmount = null; currentPersonInfo.incomeFrequency = null">
+                        <input type="radio" id="incomeNo" name="incomeNo" ng-value="false" ng-model="currentPersonInfo.income" ng-change="currentPersonInfo.incomeAmount = ''; currentPersonInfo.incomeFrequency = ''">
                         <label for="incomeNo">No</label>
 
                     </p>

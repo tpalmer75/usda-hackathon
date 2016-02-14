@@ -2521,6 +2521,9 @@ input:disabled {
 .usa-input-error .income-input .fa-question-circle {
   right: -42px; }
 
+button:disabled {
+  background: #aeb0b5; }
+
 .user-table tr.usa-input-error {
   border-left: 3px solid #cd2026; }
 .user-table input.input-error {

@@ -4,5 +4,5 @@
         <div class="hr"></div>
     </div>
     <p>This button will download a CSV of all of the available data stored in Firebase.</p>
-    <button type="button" ng-csv="testData" fileName="test">Download CSV</button>
+    <button type="button" ng-csv="firebaseRef" fileName="test.csv" ng-disabled="!dataReady" csv-label="true">{{ exportButton }}</button>
 </div>

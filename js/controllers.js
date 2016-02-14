@@ -3,8 +3,6 @@
 angular.module('lunch.controllers', [])
 
 .controller('MainCtrl', function($rootScope, $scope, $state, $stateParams, $filter, Submissions) {
-	
-	var data = Submissions.all();
 
 	// the entire object for our user data
 	$scope.newSubmission = {};
@@ -18,44 +16,31 @@ angular.module('lunch.controllers', [])
 	var currentDate = new Date();
 	// formate it with Angular
 	$scope.filteredDate = $filter('date')(currentDate, "MMM dd, y");
-	// so we don't submit more than once
-	var dataPushed = false;
-
+	// the formatted data
+	var formattedData = [];
+	// the Firebase connection
+	$scope.firebaseRef = Submissions.all();
+	// the values for the income drop downs
 	$scope.frequencyValues = [
         {name : "Weekly", id : 52},
         {name : "Bi-weekly", id : 26},
         {name : "2x per month", id : 24},
         {name : "Monthly", id : 12},
-        {name : "Yearly", id : 1}];
+        {name : "Yearly", id : 1}
+    ];
 
-	// this loads on the first step
-	// $scope.resetData = function() {
-	// 	$scope.newSubmission = {
-	// 		children: [
-	// 			{
-	// 				firstName: '',
-	// 				middleInitial: '',
-	// 				lastName: '',
-	// 			}
-	// 		],
-	// 		adults: [
-	// 			{
-	// 				firstName: '',
-	// 				middleInitial: '',
-	// 				lastName: ''
-	// 			}
-	// 		],
-	// 		date: $scope.filteredDate,
-	// 		primaryWageEarner: null
-	// 	};
-	// };
-
-	$scope.newSubmission = {
+    // The starter object for each application
+    var resetData = function() {
+    	formattedData = [];
+    	$scope.newSubmission = {
 			children: [
 				{
 					firstName: '',
 					middleInitial: '',
 					lastName: '',
+					fosterChild: null,
+					homelessMigrantRunaway: null,
+					student: null
 				}
 			],
 			adults: [
@@ -66,14 +51,33 @@ angular.module('lunch.controllers', [])
 				}
 			],
 			date: $scope.filteredDate,
-			primaryWageEarner: null
+			primaryWageEarner: null,
+			totalIncome: 0,
+			signature: null,
+			programs: null,
+			caseNumber: null,
+			ssn: '',
+			contact: {
+				address: '',
+				apt: '',
+				city: '',
+				state: '',
+				zip: '',
+				phone: '',
+				email: ''
+			},
+			latino: false,
+			indianOrAlaskan: false,
+			asian: false,
+			blackOrAfrican: false,
+			hawaiianOrIslander: false,
+			white: false
 		};
+    };
+    resetData();
+	
 
-	$scope.showTooltip = function() {
-		
-	};
-
-	// adding children or adults
+	// adding children or adults to the starter object 
 	$scope.addPerson = function(type) {
 		var newPerson = {
 			firstName: '',
@@ -90,26 +94,109 @@ angular.module('lunch.controllers', [])
 		}
 	};
 
+	// restructure the data to be CSV friendly (happens at the end)
+	var formatData = function() {
+		// format the data from each child
+		var temp = {};
+		var sub = $scope.newSubmission;
+
+		// format each child
+		for(var i=0; i < $scope.newSubmission.children.length; i++) {
+			
+			var ref = $scope.newSubmission.children[i];
+			temp = {
+				signature: sub.signature,
+				type: "child",
+				programs: sub.programs,
+				caseNumber: sub.caseNumber,
+				firstName: ref.firstName,
+				middleInitial: ref.middleInitial,
+				lastName: ref.lastName,
+				income: sub.totalIncome,
+				student: ref.student,
+				homelessMigrantRunaway: ref.homelessMigrantRunaway,
+				fosterChild: ref.fosterChild,
+				street: sub.contact.address,
+				apt: sub.contact.apt,
+				city: sub.contact.city,
+				state: sub.contact.state,
+				zip: sub.contact.zip,
+				phone: sub.contact.phone,
+				date: sub.date,
+				hispanic: sub.latino,
+				indianOrAlaskan: sub.indianOrAlaskan,
+				asian: sub.asian,
+				blackOrAfrican: sub.blackOrAfrican,
+				hawaiianOrIslander: sub.hawaiianOrIslander,
+				white: sub.white,
+				social: sub.ssn
+			};
+
+			formattedData.push(temp);
+		}
+
+		// format each adult, but adults are only included if there are no other programs
+		if (sub.programs === false) {
+			for(var i=0; i < $scope.newSubmission.adults.length; i++) {
+				var ref = $scope.newSubmission.adults[i];
+				temp = {
+					signature: sub.signature,
+					type: "adult",
+					programs: sub.programs,
+					caseNumber: sub.caseNumber,
+					firstName: ref.firstName,
+					middleInitial: ref.middleInitial,
+					lastName: ref.lastName,
+					income: sub.totalIncome,
+					student: '',
+					homelessMigrantRunaway: '',
+					fosterChild: '',
+					street: sub.contact.address,
+					apt: sub.contact.apt,
+					city: sub.contact.city,
+					state: sub.contact.state,
+					zip: sub.contact.zip,
+					phone: sub.contact.phone,
+					date: sub.date,
+					hispanic: '',
+					indianOrAlaskan: '',
+					asian: '',
+					blackOrAfrican: '',
+					hawaiianOrIslander: '',
+					white: '',
+					social: sub.ssn
+				};
+				formattedData.push(temp);
+			}
+		}
+	};
+
 	// to move back in the app
 	$scope.goBack = function() {
 		window.history.back();
 	};
 
 	// used for managing the data for individuals on state change
-	$rootScope.$on('$stateChangeSuccess', function(toState, toParams) {
+	$rootScope.$on('$stateChangeSuccess', function(toState, toParams, fromState, fromParams) {
 		$scope.currentPerson = $stateParams.idx;
 		var incoming = toParams.name;
+		var leaving = fromParams.name;
 		if (incoming === 'adult-individual') {
 			$scope.currentPersonInfo = $scope.newSubmission.adults[$scope.currentPerson];
 		} else if (incoming === 'child-individual') {
 			$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
+		// making sure data can't be altered after submission	
+		} else if (leaving === 'finish') {
+			$state.go('home');
+			resetData();
 		}
 	});
 
-	// to move forward in the app
+	// dynamic routing in the app
 	$scope.goNext = function(isValid) {
-		if(isValid) {
 
+		// isValid refers to the form validation
+		if(isValid) {
 			switch($state.current.name) {
 				case 'intro':
 					$state.go('legal');
@@ -121,6 +208,12 @@ angular.module('lunch.controllers', [])
 					$state.go('programs');
 					break;
 				case 'programs':
+					if ($scope.newSubmission.programs === true) {
+						for (i=0; i < $scope.newSubmission.children.length; i++) {
+							$scope.newSubmission.children[i].fosterChild = '';
+							$scope.newSubmission.children[i].homelessMigrantRunaway = '';
+						}
+					}
 					$state.go('child-add');
 					break;
 				case 'child-add': 
@@ -177,6 +270,29 @@ angular.module('lunch.controllers', [])
 
 						}
 						$state.go('household');
+						// Add up the children's income
+						for (var i=0;i<$scope.newSubmission.children.length;i++) {
+							var personalIncome = ($scope.newSubmission.children[i].incomeAmount * $scope.newSubmission.children[i].incomeFrequency);
+							if (personalIncome) {
+								$scope.newSubmission.totalIncome = personalIncome;
+							}
+							
+						}// Add up the adult's income
+						for (var i=0;i<$scope.newSubmission.adults.length;i++) {
+							var workIncome = ($scope.newSubmission.adults[i].workIncomeAmount * $scope.newSubmission.adults[i].workIncomeFrequency);
+							var secondIncome = ($scope.newSubmission.adults[i].secondIncomeAmount * $scope.newSubmission.adults[i].secondIncomeFrequency);
+							if (workIncome) {
+								$scope.newSubmission.totalIncome += workIncome;
+							}
+							if (secondIncome) {
+								$scope.newSubmission.totalIncome += secondIncome;
+							}
+							// If there was no income found, set it to 0.
+							if(!$scope.newSubmission.totalIncome) {
+								$scope.newSubmission.totalIncome = 0;
+							}
+						}
+						console.log($scope.newSubmission.totalIncome);
 					}
 					break;
 				case 'household':
@@ -192,13 +308,11 @@ angular.module('lunch.controllers', [])
 					break;
 				case 'ethnicity':
 					$state.go('finish');
-					console.log('should be starting');
-					if (dataPushed) {
-						data.$update($scope.newSubmission);
-						console.log('updated');
-					} else {
-						data.$add($scope.newSubmission);
-						console.log('pushed', $scope.newSubmission);
+					formatData();
+					console.log('length is ' + formattedData.length);
+					for(var i=0; i < formattedData.length; i++) {
+						$scope.firebaseRef.$add(formattedData[i]);
+						console.log('should have pushed');
 					}
 					break;
 			}
@@ -212,8 +326,16 @@ angular.module('lunch.controllers', [])
 	};
 
 
-	/// FOR EXPORTING DATA
+	/// For exporting data
 
-	$scope.testData = Submissions.test();
+	var tempData = Submissions.all();
+	$scope.dataReady = false;
+	$scope.exportButton = "Loading...";
+
+	tempData.$loaded().then(function() {
+		$scope.dataReady = true;
+		$scope.exportButton = "Download CSV";
+	});
+
 
 });

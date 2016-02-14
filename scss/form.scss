@@ -240,3 +240,7 @@ input:disabled {
 		}
 	}	
 }
+
+button:disabled {
+	background: $color-gray-light;
+}
