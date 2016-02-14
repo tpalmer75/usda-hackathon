@@ -27,7 +27,7 @@
                             name="workIncomeNo" 
                             ng-value="false" 
                             ng-model="currentPersonInfo.workIncome" 
-                            ng-change="currentPersonInfo.workIncomeAmount = null; currentPersonInfo.workIncomeFrequency = null"
+                            ng-change="currentPersonInfo.workIncomeAmount = ''; currentPersonInfo.workIncomeFrequency = ''"
                             required>
                         <label for="workIncomeNo">No</label>
                     </p>
@@ -86,7 +86,7 @@
                             name="secondIncomeNo" 
                             ng-value="false" 
                             ng-model="currentPersonInfo.secondIncome"
-                            ng-change="currentPersonInfo.secondIncomeAmount = null; currentPersonInfo.secondIncomeFrequency = null"
+                            ng-change="currentPersonInfo.secondIncomeAmount = ''; currentPersonInfo.secondIncomeFrequency = ''"
                             required>
                         <label for="secondIncomeNo">No</label>
                     </p>

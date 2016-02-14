@@ -8,7 +8,7 @@
         <div class="text-form">
             <div ng-class="{ 'input-error' : userForm.signature.$invalid && formSubmitted }">
                 <label for="Signature">Signature (Printed&nbsp;Name)</label>
-                <input type="text" ng-model="newSubmission.contact.signature" name="signature" id="signature" required>
+                <input type="text" ng-model="newSubmission.signature" name="signature" id="signature" required>
             </div>
         </div>
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="userForm.$invalid && formSubmitted">
