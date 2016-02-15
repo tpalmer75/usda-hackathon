@@ -186,7 +186,7 @@ angular.module('lunch.controllers', [])
 		} else if (incoming === 'child-individual') {
 			$scope.currentPersonInfo = $scope.newSubmission.children[$scope.currentPerson];
 		// making sure data can't be altered after submission	
-		} else if (leaving === 'finish') {
+		} else if (leaving === 'finish' && !(incoming == 'export')) {
 			$state.go('home');
 			resetData();
 		}
@@ -309,10 +309,9 @@ angular.module('lunch.controllers', [])
 				case 'ethnicity':
 					$state.go('finish');
 					formatData();
-					console.log('length is ' + formattedData.length);
+					console.log(formattedData);
 					for(var i=0; i < formattedData.length; i++) {
 						$scope.firebaseRef.$add(formattedData[i]);
-						console.log('should have pushed');
 					}
 					break;
 			}
