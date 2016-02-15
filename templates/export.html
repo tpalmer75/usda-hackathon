@@ -4,5 +4,8 @@
         <div class="hr"></div>
     </div>
     <p>This button will download a CSV of all of the available data stored in Firebase.</p>
-    <button type="button" ng-csv="firebaseRef" fileName="test.csv" ng-disabled="!dataReady" csv-label="true">{{ exportButton }}</button>
+    <button type="button" ng-csv="firebaseRef" fileName="test.csv" ng-disabled="!dataReady"
+    csv-header="['signature', 'type','programs','caseNumber','firstName','middleInitial','lastName','income','student','homelessMigrantRunaway','fosterChild','street','apt','city','state','zip','phone','date','hispanic','indianOrAlaskan','asian','blackOrAfrican','hawaiianOrIslander','white','social','$priority','$id']"
+    csv-column-order="['signature', 'type','programs','caseNumber','firstName','middleInitial','lastName','income','student','homelessMigrantRunaway','fosterChild','street','apt','city','state','zip','phone','date','hispanic','indianOrAlaskan','asian','blackOrAfrican','hawaiianOrIslander','white','social','$priority','$id']"
+    >{{ exportButton }}</button>
 </div>
