@@ -209,6 +209,7 @@ angular.module('lunch.controllers', [])
 					break;
 				case 'programs':
 					if ($scope.newSubmission.programs === true) {
+						// these values can't be left empty, but the user won't see them, so let's fill them in
 						for (i=0; i < $scope.newSubmission.children.length; i++) {
 							$scope.newSubmission.children[i].fosterChild = '';
 							$scope.newSubmission.children[i].homelessMigrantRunaway = '';
@@ -243,7 +244,10 @@ angular.module('lunch.controllers', [])
 							}
 							// if eligible
 							if (meetsCriteria) {
+								// skip adults, go to contact
 								$state.go('contact');
+								// remove the empty adult object
+								$scope.newSubmission.adults.splice(0, 1);
 							} else {
 								$state.go('adult-add');
 							}	
