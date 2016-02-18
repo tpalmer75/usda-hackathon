@@ -20,7 +20,7 @@
             </div>
             <div class="flex-item size-1" ng-class="{ 'input-error' : userForm.state.$invalid && formSubmitted }">
                 <label for="state">State</label>
-                <input type="text" ng-minlength="2" ng-model="newSubmission.contact.state" name="state" id="state">
+                <input type="text" ng-minlength="2" ng-maxlength="2" ng-model="newSubmission.contact.state" name="state" id="state">
             </div>
             <div class="flex-item size-3" ng-class="{ 'input-error' : userForm.zip.$invalid && formSubmitted }">
                 <label for="zip">Zip</label>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && userForm.$invalid">
-            <p class="usa-input-error-message"><span ng-show="userForm.state.$invalid">The state is invalid. It should just be the two letter abbreviation of your state.</span> <span ng-show="userForm.email.$invalid">The email is invalid<span ng-show="userForm.state.$invalid && userForm.email.$invalid"> too</span>.</span></p>
+            <p class="usa-input-error-message"><span ng-show="userForm.state.$invalid">The state should just be the two letter abbreviation of your state.</span> <span ng-show="userForm.email.$invalid">The email is invalid<span ng-show="userForm.state.$invalid && userForm.email.$invalid"> too</span>.</span></p>
         </div>
     </div>
     <footer class="footer-controls clearfix">
