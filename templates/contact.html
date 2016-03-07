@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="usa-input-error usa-grid-full ng-slide-down" ng-if="formSubmitted && userForm.$invalid">
-            <p class="usa-input-error-message"><span ng-show="userForm.state.$invalid">The state should just be the two letter abbreviation of your state.</span> <span ng-show="userForm.email.$invalid">The email is invalid<span ng-show="userForm.state.$invalid && userForm.email.$invalid"> too</span>.</span></p>
+            <p class="usa-input-error-message"><span ng-show="userForm.state.$invalid">The state should just be the two letter abbreviation of your state.</span> <span ng-show="userForm.email.$invalid">The email is invalid</span><span ng-show="userForm.state.$invalid && userForm.email.$invalid"> too</span>.</span><span ng-show="userForm.zip.$invalid">The zip should only be 5 numbers.</span></p>
         </div>
     </div>
     <footer class="footer-controls clearfix">
